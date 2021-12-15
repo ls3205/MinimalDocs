@@ -116,13 +116,6 @@ body {
     box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
 }
 
-.material-icons-outlined.md-60 {
-    position: relative;
-    font-size: 60px;
-    left: 13%;
-    top: 10%;
-}
-
 .upload-file {
     display: none;
 }
@@ -148,4 +141,34 @@ body {
 .logo img {
     width: 100%;
     height: 100%;
+}
+
+.clear-button {
+    position: relative;
+    color: #fc6e83;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 40px;
+    width: 90px;
+    height: 40px;
+    top: 89vh;
+    left: 72vw;
+    transition-duration: 0.25s;
+}
+
+.clear-button:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.material-icons-outlined.md-60 {
+    position: relative;
+    font-size: 60px;
+    left: 13%;
+    top: 10%;
+}
+
+.material-icons-outlined.md-30 {
+    position: relative;
+    font-size: 30px;
 }

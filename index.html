@@ -8,6 +8,7 @@
     <script src="./src/scripts/indent.js"></script>
     <script src="./src/scripts/upload.js"></script>
     <script src="./src/scripts/save.js"></script>
+    <script src="./src/scripts/clear.js"></script>
     <link rel="icon" type="image/png" href="./assets/img/minimaldocs.png" />
     <title>MinimalDocs</title>
   </head>
@@ -34,6 +35,7 @@
     <div class="texteditor">
       <textarea
         class="textfield"
+        id="textfield"
         name="name"
         placeholder="   start typing..."
       ></textarea>
@@ -41,5 +43,8 @@
     <script>
       indent();
     </script>
+    <button class="clear-button" onclick="clearText()">
+      <span class="material-icons-outlined md-30"> backspace </span>
+    </button>
   </body>
 </html>
