@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./scripts/indent.js"></script>
+    <script src="./scripts/upload.js"></script>
+    <script src="./scripts/save.js"></script>
+    <title>MinimalDocs</title>
+  </head>
+  <body>
+    <label class="upload">
+      <span class="material-icons-outlined md-60"> file_upload </span>
+      <input type="file" accept=".txt" class="upload-file" id="uploadFile" onchange="upload()" />
+    </label>
+    <label class="download">
+      <button class="download-file" onclick="save()"></button>
+        <span class="material-icons-outlined md-60"> file_download </span>
+    </label>
+    <div class="texteditor">
+      <textarea
+        class="textfield"
+        name="name"
+        placeholder="   start typing..."
+      ></textarea>
+    </div>
+    <script>
+      indent();
+    </script>
+  </body>
+</html>
