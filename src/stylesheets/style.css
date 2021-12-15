@@ -184,6 +184,11 @@ body {
     box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
 }
 
+.clear-button:active {
+    border: 3px solid #ead8d6;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
 .material-icons-outlined.md-60 {
     position: relative;
     font-size: 60px;
