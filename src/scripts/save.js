@@ -7,11 +7,8 @@ function save() {
       "href",
       "data:text/plain;charset=utf-8," + encodeURIComponent(textcontent)
     );
-    var name = '';
-    for (x = 0; x < 5; x++) {
-        name += textcontent[x];
-    }
-    downloadableLink.download = `${name}.txt`;
+    var name = `${new Date().toLocaleDateString()}-${new Date().toLocaleTimeString()}.txt`;
+    downloadableLink.download = name;
     document.body.appendChild(downloadableLink);
     downloadableLink.click();
     document.body.removeChild(downloadableLink);
