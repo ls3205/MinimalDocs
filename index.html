@@ -9,6 +9,7 @@
     <script src="./src/scripts/upload.js"></script>
     <script src="./src/scripts/save.js"></script>
     <script src="./src/scripts/clear.js"></script>
+    <script src="./src/scripts/copy.js"></script>
     <link rel="icon" type="image/png" href="./assets/img/minimaldocs.png" />
     <title>MinimalDocs</title>
   </head>
@@ -43,6 +44,9 @@
     <script>
       indent();
     </script>
+    <button class="copy-button" onclick="copyText()">
+      <span class="material-icons-outlined md-30"> content_copy </span>
+    </button>
     <button class="clear-button" onclick="clearText()">
       <span class="material-icons-outlined md-30"> backspace </span>
     </button>

@@ -143,8 +143,31 @@ body {
     height: 100%;
 }
 
+.copy-button {
+    position: absolute;
+    color: #fc6e83;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 40px;
+    width: 90px;
+    height: 40px;
+    top: 89vh;
+    left: 66vw;
+    transition-duration: 0.25s;
+}
+
+.copy-button:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.copy-button:active {
+    border: 3px solid #ead8d6;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
 .clear-button {
-    position: relative;
+    position: absolute;
     color: #fc6e83;
     background-color: #3b363f;
     border: 3px solid #36323a;
