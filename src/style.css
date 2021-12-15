@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0px;
+    padding: 0px;
+    background-color: #3b363f;
+
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.texteditor {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 75vh;
+    width: 55vw;
+    border: 2.5px solid #36323a;
+    border-radius: 10px;
+}
+
+.textfield {
+    position: relative;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #3b363f;
+    color: #fc6e83;
+    border: none;
+    outline: none;
+    resize: none;
+    width: 95%;
+    height: 95%;
+    left: 2.5%;
+    top: 2.5%;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    font-smooth: always;
+    caret-color: #ead8d6;
+    padding-right: 10px;
+    transition-duration: 0.25s;
+}
+
+.textfield::-webkit-input-placeholder {
+    color: #ead8d6;
+}
+
+.textfield::-webkit-scrollbar {
+    width: 12px;
+}
+
+.textfield::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.textfield::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.5); 
+}
+
+.cursor {
+    transition: all 80ms;
+}
+
+.upload {
+    position: absolute;
+    color: #fc6e83;
+    width: 80px;
+    height: 80px;
+    left: 10vw;
+    top: 30vh;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 100px;
+    transition-duration: 0.25s;
+}
+
+.upload:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.download {
+    position: absolute;
+    color: #fc6e83;
+    width: 80px;
+    height: 80px;
+    left: 10vw;
+    top: 60vh;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 100px;
+    transition-duration: 0.25s;
+}
+
+.download:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.upload-file {
+    display: none;
+}
+
+.download-file {
+    display: none;
+}
+
+.logo {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 2vw;
+    top: 2vh;
+    transition-duration: 0.25s;
+    border-radius: 50px;
+}
+
+.logo:hover {
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.clear-button {
+    position: absolute;
+    color: #fc6e83;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 40px;
+    width: 90px;
+    height: 40px;
+    top: 89vh;
+    left: 72vw;
+    transition-duration: 0.25s;
+}
+
+.clear-button:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.clear-button:active {
+    border: 3px solid #ead8d6;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.copy-button {
+    position: absolute;
+    color: #fc6e83;
+    background-color: #3b363f;
+    border: 3px solid #36323a;
+    border-radius: 40px;
+    width: 90px;
+    height: 40px;
+    top: 89vh;
+    left: 66vw;
+    transition-duration: 0.25s;
+}
+
+.copy-button:hover {
+    border: 3px solid #fc6e83;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.copy-button:active {
+    border: 3px solid #ead8d6;
+    box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, .2);
+}
+
+.material-icons-outlined.md-60 {
+    position: relative;
+    font-size: 60px;
+    left: 13%;
+    top: 10%;
+}
+
+.material-icons-outlined.md-30 {
+    position: relative;
+    font-size: 30px;
+}
