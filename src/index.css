@@ -11,7 +11,7 @@
   }
 
   .footer-button {
-    @apply w-full h-full transition-all duration-300 hover:bg-text hover:text-accent
+    @apply cursor-pointer w-full h-full transition-all duration-300 hover:bg-text hover:text-accent
   }
 }
 
