@@ -7,7 +7,11 @@
 
 @layer utilities {
   .editor-button {
-    @apply sm:hidden cursor-pointer w-[60px] h-[30px] border-2 mr-2 ml-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-subtext active:border-accent hover:text-subtext active:text-accent
+    @apply sm:hidden cursor-pointer min-w-[60px] h-[30px] text-subtext border-2 border-subtext mr-2 ml-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-text active:border-accent hover:text-text active:text-accent
+  }
+
+  .footer-button {
+    @apply w-full h-full transition-all duration-300 hover:bg-text hover:text-accent
   }
 }
 
@@ -30,6 +34,7 @@ code {
   --text: #000;
   --subtext: #bababa;
   --accent: #808080;
+  --menu: #454545;
 }
 
 .theme-mashu {
@@ -37,4 +42,5 @@ code {
   --text: #f1e2e4;
   --subtext: #d8a0a6;
   --accent: #76689a;
+  --menu: #27242c;
 }

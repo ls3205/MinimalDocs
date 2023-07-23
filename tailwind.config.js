@@ -14,6 +14,7 @@ module.exports = {
             text: 'var(--text)',
             subtext: 'var(--subtext)',
             accent: 'var(--accent)',
+            menu: 'var(--menu)',
             flashbang: {
                 bg: '#fff',
                 text: '#000',
