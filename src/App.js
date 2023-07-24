@@ -94,6 +94,7 @@ function App() {
     const [mobileSaveDropdown, setMobileSaveDropdown] = useState(false);
 
     const [themePopup, setThemePopup] = useState(false);
+    const themePopupButtonRef = useRef([])
 
     const [wordCount, setWordCount] = useState(0);
 
@@ -276,6 +277,7 @@ function App() {
                             <li
                                 className="flex cursor-pointer flex-row pt-3 pb-3 border-b-[1px] border-accent hover:bg-accent transition-all duration-300"
                                 onClick={() => setThemePopup(!themePopup)}
+                                ref={themePopupButtonRef}
                             >
                                 <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
                                     dark_mode
@@ -423,7 +425,7 @@ function App() {
                                 anchor="bottom-mobile"
                             >
                                 <ul className="p-3">
-                                    <li className="flex cursor-pointer flex-row pt-3 pb-3 border-b-[1px] border-accent hover:bg-accent transition-all duration-300" onClick={() => setThemePopup(!themePopup)}>
+                                    <li className="flex cursor-pointer flex-row pt-3 pb-3 border-b-[1px] border-accent hover:bg-accent transition-all duration-300" onClick={() => setThemePopup(!themePopup)} ref={themePopupButtonRef}>
                                         <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
                                             dark_mode
                                         </span>
@@ -537,6 +539,7 @@ function App() {
                     trigger={themePopup}
                     setTrigger={setThemePopup}
                     width="full"
+                    buttonRef={themePopupButtonRef}
                 >
                     <ul className="w-[inherit] h-full max-h-[inherit]">
                         <li className="flex flex-row border-b-2 border-accent">

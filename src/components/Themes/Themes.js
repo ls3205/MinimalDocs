@@ -19,5 +19,12 @@ export const Themes = {
         "--subtext": "#8e5568",
         "--accent": "#fc6e83",
         "--menu": "#332e38"
+    },
+    carbon: {
+        "--bg": "#313131",
+        "--text": "#f5e6c8",
+        "--subtext": "#616161",
+        "--accent": "#f66e0d",
+        "--menu": "#2b2b2b"
     }
 }
