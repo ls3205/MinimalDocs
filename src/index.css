@@ -29,7 +29,7 @@ code {
     monospace;
 }
 
-.theme-flashbang {
+/* .theme-flashbang {
   --bg: #fff;
   --text: #000;
   --subtext: #bababa;
@@ -43,6 +43,14 @@ code {
   --subtext: #d8a0a6;
   --accent: #76689a;
   --menu: #27242c;
+} */
+
+.theme-undefined {
+  --bg: #fff;
+  --text: #000;
+  --subtext: #454545;
+  --accent: #808080;
+  --menu: #bababa;
 }
 
 @keyframes slide-down {
