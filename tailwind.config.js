@@ -8,7 +8,11 @@ module.exports = {
                 'max': '1000px'
             }
         },
-        extend: {},
+        extend: {
+            animation: {
+                height: 'transition-height 0.3s forward ease-in-out'
+            }
+        },
         colors: {
             bg: 'var(--bg)',
             text: 'var(--text)',

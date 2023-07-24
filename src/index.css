@@ -44,3 +44,12 @@ code {
   --accent: #76689a;
   --menu: #27242c;
 }
+
+@keyframes slide-down {
+  0% {
+    scale: 0;
+  };
+  100% {
+    scale: 1;
+  }
+}
