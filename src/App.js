@@ -4,6 +4,7 @@ import "./index.css";
 
 import CustomTextArea from "./components/CustomTextArea/CustomTextArea";
 import Dropdown from "./components/Dropdown/Dropdown";
+import Popup from "./components/Popup/Popup";
 
 function App() {
     const [theme, setTheme] = useState();
@@ -13,6 +14,8 @@ function App() {
 
 	const [mobileMainDropdown, setMobileMainDropdown] = useState(false);
 	const [mobileSaveDropdown, setMobileSaveDropdown] = useState(false);
+
+	const [themePopup, setThemePopup] = useState(false);
 
 	const [wordCount, setWordCount] = useState(0);
 
@@ -115,7 +118,7 @@ function App() {
 					</button>
 					<Dropdown trigger={desktopDropdown} setTrigger={setDesktopDropdown} anchor='bm'>
 						<ul className="p-3">
-							<li className="flex cursor-pointer flex-row pt-3 pb-3 border-b-[1px] border-accent hover:bg-accent">
+							<li className="flex cursor-pointer flex-row pt-3 pb-3 border-b-[1px] border-accent hover:bg-accent" onClick={() => setThemePopup(!themePopup)}>
 								<span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">dark_mode</span>
 								<span className="mr-1 text-[20px]">{theme}</span>
 								<span className="mr-1">
@@ -246,6 +249,21 @@ function App() {
 						</li>
 					</ul>
 				</footer>
+
+				<Popup trigger={themePopup} setTrigger={setThemePopup} width='full'>
+					<ul className="w-[inherit] h-full max-h-[inherit]">
+                	    <li className="flex flex-row border-b-2 border-accent">
+                	        <p className="text-2xl p-3">Select Theme</p>
+                	        <button onClick={() => setThemePopup(false)} className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300">
+								<span class="material-icons-outlined text-2xl relative  text-subtext group-hover:text-text transition-all duration-300">close</span>
+							</button>
+                	    </li>
+                	    <li>
+                	        under construction 🏗
+                	    </li>
+                	</ul>
+				</Popup>
+
             </div>
         </ThemeContext.Provider>
     );
