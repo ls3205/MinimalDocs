@@ -1,6 +1,8 @@
 export const downloadFile = () => {
-    const textContent = document.getElementById("textfield").value;
-    const titleContent = document.getElementById("titlefield").value;
+    const textfield = document.getElementById("textfield") as HTMLTextAreaElement
+    const textContent = textfield.value;
+    const titlefield = document.getElementById("titlefield") as HTMLTextAreaElement
+    const titleContent = titlefield.value;
 
     if (textContent.length > 0) {
         const downloadableLink = document.createElement("a");

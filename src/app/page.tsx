@@ -1,41 +1,45 @@
-import { useEffect, useState, useRef } from "react";
-import ThemeContext from "./components/ThemeContext";
-import "./index.css";
+'use client'
 
-import CustomTextArea from "./components/CustomTextArea/CustomTextArea";
-import Dropdown from "./components/Dropdown/Dropdown";
-import Popup from "./components/Popup/Popup";
-import { LogoSVG, MainSVG, MobileSVG } from "./components/LogoSVG/LogoSVG";
+import React, {useEffect, useState} from "react";
 
-import { createCSSSelector } from "./scripts/createCSSSelector";
-import { copyText } from "./scripts/copyText";
-import { clearText } from "./scripts/clearText";
-import { downloadFile } from "./scripts/downloadFile"
-import { uploadFile } from "./scripts/uploadFile";
+import {
+    CustomTextArea,
+    DesktopSVG,
+    MobileSVG
+} from "@components/ui"
 
-import { Themes } from "./components/Themes/Themes";
+import {
+    clearText,
+    copyText,
+    createCSSSelector,
+    downloadFile,
+    uploadFile
+} from "@scripts";
 
-function App() {
-    const [theme, setTheme] = useState();
-    const themeContextValue = { theme, setTheme };
+import { Themes } from "@components/themes/themes";
 
-	const [themeRollback, setThemeRollback] = useState();
+import {
+    ThemeProvider,
+    useTheme, 
+    useThemeRollback, 
+} from "@/components/context/ThemeContext";
 
-    const [desktopDropdown, setDesktopDropdown] = useState(false);
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
 
-    const [mobileMainDropdown, setMobileMainDropdown] = useState(false);
-    const [mobileSaveDropdown, setMobileSaveDropdown] = useState(false);
+export default function Home() {
+    const {theme, setTheme} = useTheme();
+    const {themeRollback, setThemeRollback} = useThemeRollback();
 
-    const [themePopup, setThemePopup] = useState(false);
-    const [docInfoPopup, setDocInfoPopup] = useState(false);
+    const [wordCount, setWordCount] = useState(0);
 
-    const desktopDropdownButtonRef = useRef(null);
-    const mobileMainDropdownRef = useRef(null);
-    const mobileFileSaveDropdownRef = useRef(null);
-
-    const [wordCount, setWordCount] = useState(0);    
-
-	useEffect(() => {
+    useEffect(() => {
 		Object.entries(Themes).map(([key, value]) => {
 			var tempCSSString = '';
 			Object.entries(value).map(([subkey, subvalue]) => {
@@ -51,9 +55,9 @@ function App() {
             setTheme(storedTheme);
 			setThemeRollback(storedTheme);
         } else {
-            window.localStorage.setItem("theme", "flashbang");
-            setTheme("flashbang");
-			setThemeRollback("flashbang")
+            window.localStorage.setItem("theme", "mashu");
+            setTheme("mashu");
+			setThemeRollback("mashu")
         }
     }, []);
 
@@ -62,7 +66,7 @@ function App() {
     }, [theme]);
 
     useEffect(() => {
-        const textfield = document.getElementById("textfield");
+        const textfield = document.getElementById("textfield") as HTMLTextAreaElement;
         const countWords = () => {
             let res = [];
             let str = textfield.value
@@ -81,7 +85,8 @@ function App() {
     }, []);
 
     return (
-        <ThemeContext.Provider value={themeContextValue}>
+        //@ts-ignore
+        <ThemeProvider>
             <div
                 className={[
                     `app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300`,
@@ -90,22 +95,53 @@ function App() {
                     .filter(Boolean)
                     .join(" ")}
             >
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <div className="absolute left-[7.5%] top-[7.5%] sm:hidden">
+                            <button>
+                                <DesktopSVG activeCheck={null} />
+                            </button>
+                        </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className={`sm:hidden theme-${theme} bg-menu border-[1px] rounded-lg`}>
+                        <DropdownMenuItem
+                            className="flex cursor-pointer text-text hover:text-text flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300"
+                            // onClick={() => setThemePopup(!themePopup)}
+                        >
+                            <span className="material-icons-outlined mr-1 text-[20px] relative">
+                                dark_mode
+                            </span>
+                            <span className="mr-1 text-[20px]">
+                                {theme}
+                            </span>
+                            <span className="mr-1">
+                                <div>
+                                    <ul className="flex flex-row bg-bg rounded-lg">
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator className="w-[90%] relative left-[5%]" />
+                        <DropdownMenuItem className="flex flex-row text-text hover:text-text bg-menu cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
+                            <span className="material-icons-outlined mr-1 text-[20px] relative">
+                                info
+                            </span>
+                            <span className="text-[20px]">About</span>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
                 <div className="absolute left-[7.5%] top-[7.5%] sm:hidden">
-                    <button
-                        onClick={() => setDesktopDropdown(!desktopDropdown)}
-                        ref={desktopDropdownButtonRef}
+                    {/* <button
+                        // onClick={() => setDesktopDropdown(!desktopDropdown)}
+                        // ref={desktopDropdownButtonRef}
                     >
-                        {/* <LogoSVG 
-                            className={`group sm:hidden cursor-pointer w-[100px] h-[100px] text-subtext border-2 ${desktopDropdown ? "border-accent rounded-2xl": "border-subtext rounded-xl"} transition-all duration-300 hover:rounded-2xl hover:border-text active:border-accent`} 
-                            bg='bg'
-                            primary='subtext'
-                            hoverPrimary='text'
-                            active='accent'
-                            activeCheck={desktopDropdown}
-                        /> */}
-                        <MainSVG activeCheck={desktopDropdown} />
-                    </button>
-                    <Dropdown
+                        <DesktopSVG activeCheck={null} />
+                    </button> */}
+                    {/* <Dropdown
                         trigger={desktopDropdown}
                         setTrigger={setDesktopDropdown}
                         anchor="bm"
@@ -139,14 +175,15 @@ function App() {
                                 <span className="text-[20px]">About</span>
                             </li>
                         </ul>
-                    </Dropdown>
+                    </Dropdown> */}
                 </div>
                 <div className="absolute right-[25%] bottom-[92%]">
-                    <button className="editor-button" onClick={() => setDocInfoPopup(!docInfoPopup)}>
-                        <span className="material-icons-outlined">
-                            subject
-                        </span>
-                        <span className="relative text-2xl m-1 -top-[5px]">
+                    <button
+                        className="editor-button"
+                        // onClick={() => setDocInfoPopup(!docInfoPopup)}
+                    >
+                        <span className="material-icons-outlined">subject</span>
+                        <span className="relative text-2xl m-1 -top-[3px]">
                             {wordCount}
                         </span>
                     </button>
@@ -185,7 +222,13 @@ function App() {
                             content_copy{" "}
                         </span>
                     </button>
-                    <button className="editor-button" onClick={() => {clearText(); setWordCount(0)}}>
+                    <button
+                        className="editor-button"
+                        onClick={() => {
+                            clearText();
+                            setWordCount(0);
+                        }}
+                    >
                         <span className="material-icons-outlined">
                             {" "}
                             backspace{" "}
@@ -196,10 +239,10 @@ function App() {
                     <ul className="flex flex-row w-full h-full">
                         <li
                             className="w-[20%] align-middle justify-center group hover:bg-text transition-all duration-300"
-                            onClick={() =>
-                                setMobileMainDropdown(!mobileMainDropdown)
-                            }
-                            ref={mobileMainDropdownRef}
+                            // onClick={() =>
+                            //     setMobileMainDropdown(!mobileMainDropdown)
+                            // }
+                            // ref={mobileMainDropdownRef}
                         >
                             {/* <button className="footer-button" > */}
                             {/* <LogoSVG 
@@ -211,14 +254,19 @@ function App() {
                             /> */}
                             <MobileSVG />
                             {/* </button> */}
-                            <Dropdown
+                            {/* <Dropdown
                                 trigger={mobileMainDropdown}
                                 setTrigger={setMobileMainDropdown}
                                 anchor="bottom-mobile"
                                 buttonRef={mobileMainDropdownRef}
                             >
                                 <ul className="p-3">
-                                    <li className="flex cursor-pointer flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300" onClick={() => setThemePopup(!themePopup)}>
+                                    <li
+                                        className="flex cursor-pointer flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300"
+                                        onClick={() =>
+                                            setThemePopup(!themePopup)
+                                        }
+                                    >
                                         <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
                                             dark_mode
                                         </span>
@@ -244,21 +292,21 @@ function App() {
                                         </span>
                                     </li>
                                 </ul>
-                            </Dropdown>
+                            </Dropdown> */}
                         </li>
                         <li className="w-[20%] align-middle justify-center">
                             <button
                                 className="footer-button"
-                                onClick={() =>
-                                    setMobileSaveDropdown(!mobileSaveDropdown)
-                                }
-                                ref={mobileFileSaveDropdownRef}
+                                // onClick={() =>
+                                //     setMobileSaveDropdown(!mobileSaveDropdown)
+                                // }
+                                // ref={mobileFileSaveDropdownRef}
                             >
                                 <span className="relative material-icons-outlined text-[4vh]">
                                     save
                                 </span>
                             </button>
-                            <Dropdown
+                            {/* <Dropdown
                                 trigger={mobileSaveDropdown}
                                 setTrigger={setMobileSaveDropdown}
                                 anchor="bottom-mobile"
@@ -296,10 +344,13 @@ function App() {
                                         </span>
                                     </li>
                                 </ul>
-                            </Dropdown>
+                            </Dropdown> */}
                         </li>
                         <li className="w-[20%] align-middle justify-center">
-                            <button className="footer-button" onClick={() => setDocInfoPopup(!docInfoPopup)}>
+                            <button
+                                className="footer-button"
+                                // onClick={() => setDocInfoPopup(!docInfoPopup)}
+                            >
                                 <span className="material-icons-outlined text-[4vh]">
                                     subject
                                 </span>
@@ -319,7 +370,10 @@ function App() {
                         <li className="w-[20%] align-middle justify-center">
                             <button
                                 className="footer-button"
-                                onClick={() => {clearText(); setWordCount(0)}}
+                                onClick={() => {
+                                    clearText();
+                                    setWordCount(0);
+                                }}
                             >
                                 <span className="material-icons-outlined text-[4vh]">
                                     {" "}
@@ -329,69 +383,7 @@ function App() {
                         </li>
                     </ul>
                 </footer>
-
-                <Popup
-                    trigger={themePopup}
-                    setTrigger={setThemePopup}
-                    width="full"
-                >
-                    <ul className="w-[inherit] h-full max-h-[inherit] sm:w-full">
-                        <li className="flex flex-row border-b-2 border-accent">
-                            <p className="text-2xl p-3">Select Theme</p>
-                            <button
-                                onClick={() => setThemePopup(false)}
-                                className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
-                            >
-                                <span className="material-icons-outlined text-2xl relative  text-subtext group-hover:text-text transition-all duration-300">
-                                    close
-                                </span>
-                            </button>
-                        </li>
-                        <li className="mt-2">
-                            <ul>
-                                {Object.entries(Themes).map(([key, value]) => {
-                                    return (
-										<li className="flex flex-row group w-[calc(100%-1rem)] m-2 mt-0 mb-0 p-2 pt-3 pb-3 rounded-lg hover:bg-accent transition-all duration-300" onClick={() => {setTheme(key); setThemeRollback(key); setThemePopup(false)}} onMouseOver={() => setTheme(key)} onMouseLeave={() => setTheme(themeRollback)} key={key}>
-											<span className="text-lg">{key}</span>
-											<span className={`theme-${key} mr-5 right-0 absolute`}>
-                                    			<div>
-                                        			<ul className="flex flex-row bg-bg rounded-lg">
-                                            			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                            			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                            			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                        			</ul>
-                                    			</div>
-                                			</span>	
-										</li>
-									);
-                                })}
-                            </ul>
-                        </li>
-                    </ul>
-                </Popup>
-
-                <Popup
-                    trigger={docInfoPopup}
-                    setTrigger={setDocInfoPopup}
-                    width='full'
-                >
-                    <ul className="w-[inherit] h-full max-h-[inherit] sm:w-full">
-                        <li className="flex flex-row">
-                            <h1 className="mr-4 text-[35px]">under construction... 🚧👷‍♂️</h1>
-                            <button
-                                onClick={() => setDocInfoPopup(false)}
-                                className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
-                            >
-                                <span className="material-icons-outlined text-2xl relative  text-subtext group-hover:text-text transition-all duration-300">
-                                    close
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                </Popup>
             </div>
-        </ThemeContext.Provider>
+        </ThemeProvider>
     );
 }
-
-export default App;

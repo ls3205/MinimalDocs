@@ -1,21 +1,20 @@
-import React, { useEffect, useContext } from "react";
-import ThemeContext from "../ThemeContext";
+'use client'
+
+import React, { useEffect } from "react";
 
 function CustomTextArea() {
-    const { theme, setTheme } = useContext(ThemeContext);
-
     useEffect(() => {
-        const textfield = document.getElementById('textfield');
+        const textfield = document.getElementById('textfield') as HTMLTextAreaElement;
 
-        const handleIndent = (e) => {
+        const handleIndent = (e:KeyboardEvent) => {
             if (e.key === "Tab") {
                 e.stopPropagation();
                 e.preventDefault();
 
-                textfield.setRangeText(
+                textfield?.setRangeText(
                     "\t",
-                    textfield.selectionStart,
-                    textfield.selectionEnd,
+                    textfield?.selectionStart,
+                    textfield?.selectionEnd,
                     "end"
                 );
             }
