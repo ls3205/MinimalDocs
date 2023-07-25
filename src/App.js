@@ -5,7 +5,7 @@ import "./index.css";
 import CustomTextArea from "./components/CustomTextArea/CustomTextArea";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Popup from "./components/Popup/Popup";
-import LogoSVG from "./components/LogoSVG/LogoSVG";
+import { LogoSVG, MainSVG, MobileSVG } from "./components/LogoSVG/LogoSVG";
 
 import { createCSSSelector } from "./scripts/createCSSSelector";
 import { copyText } from "./scripts/copyText";
@@ -95,14 +95,15 @@ function App() {
                         onClick={() => setDesktopDropdown(!desktopDropdown)}
                         ref={desktopDropdownButtonRef}
                     >
-                        <LogoSVG 
+                        {/* <LogoSVG 
                             className={`group sm:hidden cursor-pointer w-[100px] h-[100px] text-subtext border-2 ${desktopDropdown ? "border-accent rounded-2xl": "border-subtext rounded-xl"} transition-all duration-300 hover:rounded-2xl hover:border-text active:border-accent`} 
                             bg='bg'
                             primary='subtext'
                             hoverPrimary='text'
                             active='accent'
                             activeCheck={desktopDropdown}
-                        />
+                        /> */}
+                        <MainSVG activeCheck={desktopDropdown} />
                     </button>
                     <Dropdown
                         trigger={desktopDropdown}
@@ -201,13 +202,14 @@ function App() {
                             ref={mobileMainDropdownRef}
                         >
                             {/* <button className="footer-button" > */}
-                            <LogoSVG 
+                            {/* <LogoSVG 
                                 className="hidden relative -translate-x-1/2 left-1/2 sm:block cursor-pointer h-full text-subtext transition-all duration-300"
                                 bg='menu'
                                 hoverBG='text'
                                 primary='text'
                                 hoverPrimary='accent'
-                            />
+                            /> */}
+                            <MobileSVG />
                             {/* </button> */}
                             <Dropdown
                                 trigger={mobileMainDropdown}
