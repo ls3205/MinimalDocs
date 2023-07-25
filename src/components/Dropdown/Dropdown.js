@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-function Dropdown({ trigger, children, anchor, inputRef }) {
+function Dropdown({ trigger, setTrigger, children, anchor, buttonRef }) {
+    const dropdownRef = useRef(null)
+
+    useEffect(() => {
+        const handler = (e) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                if (buttonRef.current && !buttonRef.current.contains(e.target)) {
+                    setTrigger(false)
+                }
+            }
+        }
+
+        window.addEventListener("click", handler)
+        return () => window.removeEventListener("click", handler)
+    }, [])
+
     return (
         trigger && (
             <div
@@ -9,7 +24,7 @@ function Dropdown({ trigger, children, anchor, inputRef }) {
                             (anchor === 'bottom-mobile' && 'w-[90%] left-[5%] bottom-[150%] h-auto origin-bottom')]
                     .filter(Boolean)
                     .join(" ")}
-                ref={inputRef}
+                ref={dropdownRef}
             >
                 {children}
             </div>
