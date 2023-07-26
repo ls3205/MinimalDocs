@@ -12,6 +12,22 @@
   .footer-button {
     @apply cursor-pointer w-full h-full transition-all duration-300 border-accent hover:bg-text hover:text-accent hover:border-accent
   }
+
+  .dropdown-button {
+    @apply 
+  }
+
+  .tw-bg-op-1 {
+    --tw-bg-opacity: 1
+  }
+}
+
+.theme {
+  --bg: #2b2b2b;
+  --text: #f1e2e4;
+  --subtext: #d8a0a6;
+  --accent: #76689a;
+  --menu: #27242c;
 }
 
 body {
@@ -100,5 +116,38 @@ code {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes expand {
+  0% {
+    scale: 0;
+    opacity: 0;
+  };
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes despand {
+  0% {
+    scale: 1;
+    opacity: 1;
+  };
+  100% {
+    scale: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

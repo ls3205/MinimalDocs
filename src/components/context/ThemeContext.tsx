@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, createContext, useContext } from "react";;
 
 const ThemeContext = createContext({theme: 'mashu', setTheme: (newTheme) => {}});

@@ -4,6 +4,7 @@ module.exports = {
     content: [
         "./pages/**/*.{ts,tsx}",
         "./components/**/*.{ts,tsx}",
+        "./src/components/**/*.{ts, tsx}",
         "./app/**/*.{ts,tsx}",
         "./src/**/*.{ts,tsx}",
     ],
@@ -31,7 +32,7 @@ module.exports = {
                 bg: "var(--bg)",
                 text: "var(--text)",
                 subtext: "var(--subtext)",
-                accent: "var(--accent)",
+                highlight: "var(--highlight)",
                 menu: "var(--menu)",
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
@@ -83,5 +84,8 @@ module.exports = {
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [
+        require("tailwindcss-animate"),
+        require('@headlessui/tailwindcss')
+    ],
 };

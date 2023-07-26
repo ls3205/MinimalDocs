@@ -1,63 +1,59 @@
-'use client'
+"use client";
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, Fragment } from "react";
 
-import {
-    CustomTextArea,
-    DesktopSVG,
-    MobileSVG
-} from "@components/ui"
+import { CustomTextArea, DesktopSVG, MobileSVG } from "@components/ui";
 
 import {
     clearText,
     copyText,
     createCSSSelector,
     downloadFile,
-    uploadFile
+    uploadFile,
 } from "@scripts";
 
 import { Themes } from "@components/themes/themes";
 
 import {
     ThemeProvider,
-    useTheme, 
-    useThemeRollback, 
-} from "@/components/context/ThemeContext";
+    useTheme,
+    useThemeRollback,
+} from "@components/context/ThemeContext";
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+    Dropdown,
+    DropdownTrigger,
+    DropdownItems,
+    DropdownItem,
+    DropdownItemIcon,
+    DropdownDivider
+} from "@components/ui/Dropdown"
 
 export default function Home() {
-    const {theme, setTheme} = useTheme();
-    const {themeRollback, setThemeRollback} = useThemeRollback();
+    const { theme, setTheme } = useTheme();
+    const { themeRollback, setThemeRollback } = useThemeRollback();
 
     const [wordCount, setWordCount] = useState(0);
 
     useEffect(() => {
-		Object.entries(Themes).map(([key, value]) => {
-			var tempCSSString = '';
-			Object.entries(value).map(([subkey, subvalue]) => {
-				tempCSSString += `${subkey}: ${subvalue};`
-			})
-			createCSSSelector(`.theme-${key}`, tempCSSString)
-		})
-	}, [])
+        Object.entries(Themes).map(([key, value]) => {
+            var tempCSSString = "";
+            Object.entries(value).map(([subkey, subvalue]) => {
+                tempCSSString += `${subkey}: ${subvalue};`;
+            });
+            createCSSSelector(`.theme-${key}`, tempCSSString);
+        });
+    }, []);
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");
         if (storedTheme !== (undefined || null)) {
             setTheme(storedTheme);
-			setThemeRollback(storedTheme);
+            setThemeRollback(storedTheme);
         } else {
             window.localStorage.setItem("theme", "mashu");
             setTheme("mashu");
-			setThemeRollback("mashu")
+            setThemeRollback("mashu");
         }
     }, []);
 
@@ -66,7 +62,9 @@ export default function Home() {
     }, [theme]);
 
     useEffect(() => {
-        const textfield = document.getElementById("textfield") as HTMLTextAreaElement;
+        const textfield = document.getElementById(
+            "textfield"
+        ) as HTMLTextAreaElement;
         const countWords = () => {
             let res = [];
             let str = textfield.value
@@ -95,7 +93,7 @@ export default function Home() {
                     .filter(Boolean)
                     .join(" ")}
             >
-                <DropdownMenu>
+                {/* <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <div className="absolute left-[7.5%] top-[7.5%] sm:hidden">
                             <button>
@@ -104,8 +102,9 @@ export default function Home() {
                         </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className={`sm:hidden theme-${theme} bg-menu border-[1px] rounded-lg`}>
+                        
                         <DropdownMenuItem
-                            className="flex cursor-pointer text-text hover:text-text flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300"
+                            className="text-text m-2 mt-2 mb-2 p-2 rounded-lg focus:text-text !bg-accent focus:!bg-accent"
                             // onClick={() => setThemePopup(!themePopup)}
                         >
                             <span className="material-icons-outlined mr-1 text-[20px] relative">
@@ -125,16 +124,46 @@ export default function Home() {
                             </span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="w-[90%] relative left-[5%]" />
-                        <DropdownMenuItem className="flex flex-row text-text hover:text-text bg-menu cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
+                        <DropdownMenuItem className="text-text m-2 mt-2 mb-2 p-2 rounded-lg focus:text-text focus:!bg-accent">
                             <span className="material-icons-outlined mr-1 text-[20px] relative">
                                 info
                             </span>
                             <span className="text-[20px]">About</span>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
 
-                <div className="absolute left-[7.5%] top-[7.5%] sm:hidden">
+                <Dropdown className="absolute left-[7.5%] top-[7.5%] flex flex-col justify-center sm:hidden">
+                    <DropdownTrigger>
+                        <button>
+                            <DesktopSVG activeCheck={null} />
+                        </button>
+                    </DropdownTrigger>
+                    <DropdownItems anchor='bm' className='bg-menu border-[1px] rounded-lg'>
+                        <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
+                            <DropdownItemIcon icon='dark_mode' />
+                            <span className="mr-1 text-[20px]">
+                                {theme}
+                            </span>
+                            <span className="mr-1">
+                                <div>
+                                    <ul className="flex flex-row bg-bg rounded-lg">
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
+                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </DropdownItem>
+                        <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
+                        <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
+                            <DropdownItemIcon icon='info' />
+                            <span className="text-[20px]">About</span>
+                        </DropdownItem>
+                    </DropdownItems>
+                </Dropdown>
+
+                {/* <div className="absolute left-[7.5%] top-[7.5%] sm:hidden"> */}
                     {/* <button
                         // onClick={() => setDesktopDropdown(!desktopDropdown)}
                         // ref={desktopDropdownButtonRef}
@@ -176,7 +205,7 @@ export default function Home() {
                             </li>
                         </ul>
                     </Dropdown> */}
-                </div>
+                {/* </div> */}
                 <div className="absolute right-[25%] bottom-[92%]">
                     <button
                         className="editor-button"
@@ -235,7 +264,7 @@ export default function Home() {
                         </span>
                     </button>
                 </div>
-                <footer className="hidden absolute border-t-[1px] border-accent bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
+                <footer className="hidden absolute border-t-[1px] border-highlight bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
                     <ul className="flex flex-row w-full h-full">
                         <li
                             className="w-[20%] align-middle justify-center group hover:bg-text transition-all duration-300"
