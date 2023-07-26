@@ -6,11 +6,11 @@
 
 @layer utilities {
   .editor-button {
-    @apply sm:hidden cursor-pointer min-w-[60px] h-[30px] text-subtext border-2 border-subtext mr-2 ml-2 pr-2 pl-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-text active:border-accent hover:text-text active:text-accent
+    @apply sm:hidden cursor-pointer min-w-[60px] h-[30px] text-subtext border-2 border-subtext mr-2 ml-2 pr-2 pl-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-text active:border-highlight hover:text-text active:text-highlight
   }
 
   .footer-button {
-    @apply cursor-pointer w-full h-full transition-all duration-300 border-accent hover:bg-text hover:text-accent hover:border-accent
+    @apply cursor-pointer w-full h-full transition-all duration-300 border-highlight hover:bg-text hover:text-highlight hover:border-highlight
   }
 
   .dropdown-button {
@@ -20,14 +20,6 @@
   .tw-bg-op-1 {
     --tw-bg-opacity: 1
   }
-}
-
-.theme {
-  --bg: #2b2b2b;
-  --text: #f1e2e4;
-  --subtext: #d8a0a6;
-  --accent: #76689a;
-  --menu: #27242c;
 }
 
 body {

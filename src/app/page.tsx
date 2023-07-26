@@ -133,11 +133,9 @@ export default function Home() {
                     </DropdownMenuContent>
                 </DropdownMenu> */}
 
-                <Dropdown className="absolute left-[7.5%] top-[7.5%] flex flex-col justify-center sm:hidden">
+                <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
                     <DropdownTrigger>
-                        <button>
-                            <DesktopSVG activeCheck={null} />
-                        </button>
+                        <DesktopSVG activeCheck={null} />
                     </DropdownTrigger>
                     <DropdownItems anchor='bm' className='bg-menu border-[1px] rounded-lg'>
                         <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>

@@ -31,7 +31,7 @@ const Dropdown = ({children, ...props}) => {
         <ExpandedContext.Provider value={expandedContextValue}>
             <ButtonRefContext.Provider value={buttonRef}>
                 <DropdownRefContext.Provider value={dropdownRef}>
-                    <div className="inline-block w-auto h-auto" {...props}>
+                    <div {...props}>
                         {
                             children
                         }
@@ -47,11 +47,11 @@ const DropdownTrigger = ({children, ...props}) => {
     const buttonRef = useContext(ButtonRefContext);
 
     return (
-        <div className="inline-block" onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
+        <button className="" onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
             {
                 children
             }
-        </div>
+        </button>
     )
 }
 
@@ -61,7 +61,7 @@ const DropdownItems = ({children, className, anchor, ...props}) => {
 
     return (
         expanded ? (
-            <div className={[`relative transition-all animate-[expand_0.3s_ease-in-out_both] ${className}`, (anchor === 'bm') && '-translate-x-1/4 origin-[top_center]'].filter(Boolean).join(' ')} ref={dropdownRef} {...props}>
+            <div className={[`absolute transition-all  ${className}`, (anchor === 'bm') && 'left-1/2 -translate-x-1/2 origin-top-left'].filter(Boolean).join(' ')} ref={dropdownRef} {...props}>
                 {
                     children
                 }
