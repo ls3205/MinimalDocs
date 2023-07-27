@@ -42,16 +42,22 @@ const Dropdown = ({children, ...props}) => {
     )
 }
 
-const DropdownTrigger = ({children, ...props}) => {
+const DropdownTrigger = ({children, bypassButton, ...props}) => {
     const {expanded, setExpanded} = useContext(ExpandedContext);
     const buttonRef = useContext(ButtonRefContext);
 
     return (
-        <button className="" onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
-            {
-                children
-            }
-        </button>
+        !bypassButton ? (
+            <button onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
+                {
+                    children
+                }
+            </button>
+        ) : (
+            <div className="w-full h-full" onClick={() => setExpanded(!expanded)}>
+                { children }
+            </div>
+        )
     )
 }
 
@@ -61,7 +67,11 @@ const DropdownItems = ({children, className, anchor, ...props}) => {
 
     return (
         expanded ? (
-            <div className={[`absolute transition-all  ${className}`, (anchor === 'bm') && 'left-1/2 -translate-x-1/2 origin-top-left'].filter(Boolean).join(' ')} ref={dropdownRef} {...props}>
+            <div className={[
+                `absolute transition-all  ${className}`,
+                (anchor === 'bm') && 'left-1/2 -translate-x-1/2 origin-top-left',
+                (anchor === 'bottom-mobile' && 'w-[90%] left-[5%] bottom-[150%] h-auto origin-bottom')
+                ].filter(Boolean).join(' ')} ref={dropdownRef} {...props}>
                 {
                     children
                 }

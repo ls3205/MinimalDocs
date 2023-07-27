@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState } from "react";
 
 import { CustomTextArea, DesktopSVG, MobileSVG } from "@components/ui";
 
@@ -93,48 +93,8 @@ export default function Home() {
                     .filter(Boolean)
                     .join(" ")}
             >
-                {/* <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <div className="absolute left-[7.5%] top-[7.5%] sm:hidden">
-                            <button>
-                                <DesktopSVG activeCheck={null} />
-                            </button>
-                        </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className={`sm:hidden theme-${theme} bg-menu border-[1px] rounded-lg`}>
-                        
-                        <DropdownMenuItem
-                            className="text-text m-2 mt-2 mb-2 p-2 rounded-lg focus:text-text !bg-accent focus:!bg-accent"
-                            // onClick={() => setThemePopup(!themePopup)}
-                        >
-                            <span className="material-icons-outlined mr-1 text-[20px] relative">
-                                dark_mode
-                            </span>
-                            <span className="mr-1 text-[20px]">
-                                {theme}
-                            </span>
-                            <span className="mr-1">
-                                <div>
-                                    <ul className="flex flex-row bg-bg rounded-lg">
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                    </ul>
-                                </div>
-                            </span>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator className="w-[90%] relative left-[5%]" />
-                        <DropdownMenuItem className="text-text m-2 mt-2 mb-2 p-2 rounded-lg focus:text-text focus:!bg-accent">
-                            <span className="material-icons-outlined mr-1 text-[20px] relative">
-                                info
-                            </span>
-                            <span className="text-[20px]">About</span>
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu> */}
-
                 <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
-                    <DropdownTrigger>
+                    <DropdownTrigger bypassButton={false}>
                         <DesktopSVG activeCheck={null} />
                     </DropdownTrigger>
                     <DropdownItems anchor='bm' className='bg-menu border-[1px] rounded-lg'>
@@ -160,50 +120,6 @@ export default function Home() {
                         </DropdownItem>
                     </DropdownItems>
                 </Dropdown>
-
-                {/* <div className="absolute left-[7.5%] top-[7.5%] sm:hidden"> */}
-                    {/* <button
-                        // onClick={() => setDesktopDropdown(!desktopDropdown)}
-                        // ref={desktopDropdownButtonRef}
-                    >
-                        <DesktopSVG activeCheck={null} />
-                    </button> */}
-                    {/* <Dropdown
-                        trigger={desktopDropdown}
-                        setTrigger={setDesktopDropdown}
-                        anchor="bm"
-                        buttonRef={desktopDropdownButtonRef}
-                    >
-                        <ul className="p-3">
-                            <li
-                                className="flex cursor-pointer flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300"
-                                onClick={() => setThemePopup(!themePopup)}
-                            >
-                                <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
-                                    dark_mode
-                                </span>
-                                <span className="mr-1 text-[20px]">
-                                    {theme}
-                                </span>
-                                <span className="mr-1">
-                                    <div>
-                                        <ul className="flex flex-row bg-bg rounded-lg">
-                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                        </ul>
-                                    </div>
-                                </span>
-                            </li>
-                            <li className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
-                                <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
-                                    info
-                                </span>
-                                <span className="text-[20px]">About</span>
-                            </li>
-                        </ul>
-                    </Dropdown> */}
-                {/* </div> */}
                 <div className="absolute right-[25%] bottom-[92%]">
                     <button
                         className="editor-button"
@@ -264,39 +180,14 @@ export default function Home() {
                 </div>
                 <footer className="hidden absolute border-t-[1px] border-highlight bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
                     <ul className="flex flex-row w-full h-full">
-                        <li
-                            className="w-[20%] align-middle justify-center group hover:bg-text transition-all duration-300"
-                            // onClick={() =>
-                            //     setMobileMainDropdown(!mobileMainDropdown)
-                            // }
-                            // ref={mobileMainDropdownRef}
-                        >
-                            {/* <button className="footer-button" > */}
-                            {/* <LogoSVG 
-                                className="hidden relative -translate-x-1/2 left-1/2 sm:block cursor-pointer h-full text-subtext transition-all duration-300"
-                                bg='menu'
-                                hoverBG='text'
-                                primary='text'
-                                hoverPrimary='accent'
-                            /> */}
-                            <MobileSVG />
-                            {/* </button> */}
-                            {/* <Dropdown
-                                trigger={mobileMainDropdown}
-                                setTrigger={setMobileMainDropdown}
-                                anchor="bottom-mobile"
-                                buttonRef={mobileMainDropdownRef}
-                            >
-                                <ul className="p-3">
-                                    <li
-                                        className="flex cursor-pointer flex-row m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300"
-                                        onClick={() =>
-                                            setThemePopup(!themePopup)
-                                        }
-                                    >
-                                        <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
-                                            dark_mode
-                                        </span>
+                        <li className="w-[20%]">
+                            <Dropdown className="w-full h-full align-middle justify-center group hover:bg-text transition-all duration-300">
+                                <DropdownTrigger bypassButton={true}>
+                                    <MobileSVG />
+                                </DropdownTrigger>
+                                <DropdownItems anchor="bottom-mobile" className='bg-menu border-[1px] rounded-lg'>
+                                    <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
+                                        <DropdownItemIcon icon='dark_mode' />
                                         <span className="mr-1 text-[20px]">
                                             {theme}
                                         </span>
@@ -309,38 +200,24 @@ export default function Home() {
                                                 </ul>
                                             </div>
                                         </span>
-                                    </li>
-                                    <li className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
-                                        <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
-                                            info
-                                        </span>
-                                        <span className="text-[20px]">
-                                            About
-                                        </span>
-                                    </li>
-                                </ul>
-                            </Dropdown> */}
+                                    </DropdownItem>
+                                    <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
+                                    <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
+                                        <DropdownItemIcon icon='info' />
+                                        <span className="text-[20px]">About</span>
+                                    </DropdownItem>
+                                </DropdownItems>
+                            </Dropdown>
                         </li>
-                        <li className="w-[20%] align-middle justify-center">
-                            <button
-                                className="footer-button"
-                                // onClick={() =>
-                                //     setMobileSaveDropdown(!mobileSaveDropdown)
-                                // }
-                                // ref={mobileFileSaveDropdownRef}
-                            >
-                                <span className="relative material-icons-outlined text-[4vh]">
-                                    save
-                                </span>
-                            </button>
-                            {/* <Dropdown
-                                trigger={mobileSaveDropdown}
-                                setTrigger={setMobileSaveDropdown}
-                                anchor="bottom-mobile"
-                                buttonRef={mobileFileSaveDropdownRef}
-                            >
-                                <ul className="p-3">
-                                    <li className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
+                        <li className="w-[20%]">
+                            <Dropdown className='w-full h-full align-middle justify-center group hover:bg-text transition-all duration-300'>
+                                <DropdownTrigger className='footer-button' bypassButton={false}>
+                                    <span className="relative material-icons-outlined text-[4vh]">
+                                        save
+                                    </span>
+                                </DropdownTrigger>
+                                <DropdownItems anchor="bottom-mobile" className='bg-menu border-[1px] rounded-lg'>
+                                    <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
                                         <label className="inline-block w-full h-full">
                                             <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
                                                 {" "}
@@ -357,8 +234,9 @@ export default function Home() {
                                                 Upload
                                             </span>
                                         </label>
-                                    </li>
-                                    <li className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-accent transition-all duration-300">
+                                    </DropdownItem>
+                                    <DropdownDivider className='!bg-text relative w-[90%] left-[5%]' />
+                                    <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
                                         <span
                                             className="material-icons-outlined mr-1 text-[20px] top-[5px] relative"
                                             onClick={downloadFile}
@@ -369,9 +247,9 @@ export default function Home() {
                                         <span className="text-[20px]">
                                             Download
                                         </span>
-                                    </li>
-                                </ul>
-                            </Dropdown> */}
+                                    </DropdownItem>
+                                </DropdownItems>
+                            </Dropdown>
                         </li>
                         <li className="w-[20%] align-middle justify-center">
                             <button
