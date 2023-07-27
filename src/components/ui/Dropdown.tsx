@@ -4,10 +4,6 @@ const ExpandedContext = createContext({expanded: undefined, setExpanded: undefin
 const ButtonRefContext = createContext(undefined);
 const DropdownRefContext = createContext(undefined);
 
-const useExpanded = () => {
-    return useContext(ExpandedContext)
-}
-
 const Dropdown = ({children, ...props}) => {
     const [expanded, setExpanded] = useState(false);
     const expandedContextValue = {expanded, setExpanded}
@@ -54,7 +50,7 @@ const DropdownTrigger = ({children, bypassButton, ...props}) => {
                 }
             </button>
         ) : (
-            <div className="w-full h-full" onClick={() => setExpanded(!expanded)}>
+            <div className="w-full h-full" onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
                 { children }
             </div>
         )
@@ -62,7 +58,7 @@ const DropdownTrigger = ({children, bypassButton, ...props}) => {
 }
 
 const DropdownItems = ({children, className, anchor, ...props}) => {
-    const {expanded, setExpanded} = useExpanded();
+    const {expanded, setExpanded} = useContext(ExpandedContext);
     const dropdownRef = useContext(DropdownRefContext)
 
     return (

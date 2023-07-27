@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/server'
-import { useTheme } from '@/components/context/ThemeContext'
  
 // Route segment config
 export const runtime = 'edge'
@@ -13,22 +12,20 @@ export const contentType = 'image/png'
  
 // Image generation
 export default function Icon() {
-  const {theme, setTheme} = useTheme();
 
   return new ImageResponse(
     (
       // ImageResponse JSX element
       <div
-        className={`theme-${theme}`}
         style={{
           fontSize: 24,
-          background: 'var(--bg)',
+          background: '#3b363f',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'var(--subtext)',
+          color: '#fc6e83',
         }}
       >
         m

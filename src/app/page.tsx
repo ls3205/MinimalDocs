@@ -29,6 +29,15 @@ import {
     DropdownDivider
 } from "@components/ui/Dropdown"
 
+import {
+    Popup,
+    PopupTrigger,
+    PopupRemoteTrigger,
+    PopupContent,
+    PopupHeader,
+    PopupExitButton
+} from "@components/ui/Popup"
+
 export default function Home() {
     const { theme, setTheme } = useTheme();
     const { themeRollback, setThemeRollback } = useThemeRollback();
@@ -99,19 +108,21 @@ export default function Home() {
                     </DropdownTrigger>
                     <DropdownItems anchor='bm' className='bg-menu border-[1px] rounded-lg'>
                         <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
-                            <DropdownItemIcon icon='dark_mode' />
-                            <span className="mr-1 text-[20px]">
-                                {theme}
-                            </span>
-                            <span className="mr-1">
-                                <div>
-                                    <ul className="flex flex-row bg-bg rounded-lg">
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                    </ul>
-                                </div>
-                            </span>
+                            <PopupRemoteTrigger id='theme-popup-remote' triggerId='theme-popup'>
+                                <DropdownItemIcon icon='dark_mode' />
+                                <span className="mr-1 text-[20px]">
+                                    {theme}
+                                </span>
+                                <span className="mr-1">
+                                    <div>
+                                        <ul className="flex flex-row bg-bg rounded-lg">
+                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
+                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
+                                            <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                            </PopupRemoteTrigger>
                         </DropdownItem>
                         <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
                         <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
@@ -187,19 +198,21 @@ export default function Home() {
                                 </DropdownTrigger>
                                 <DropdownItems anchor="bottom-mobile" className='bg-menu border-[1px] rounded-lg'>
                                     <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
-                                        <DropdownItemIcon icon='dark_mode' />
-                                        <span className="mr-1 text-[20px]">
-                                            {theme}
-                                        </span>
-                                        <span className="mr-1">
-                                            <div>
-                                                <ul className="flex flex-row bg-bg rounded-lg">
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                                </ul>
-                                            </div>
-                                        </span>
+                                        <PopupRemoteTrigger id='theme-popup-remote' triggerId='theme-popup'>
+                                            <DropdownItemIcon icon='dark_mode' />
+                                            <span className="mr-1 text-[20px]">
+                                                {theme}
+                                            </span>
+                                            <span className="mr-1">
+                                                <div>
+                                                    <ul className="flex flex-row bg-bg rounded-lg">
+                                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
+                                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
+                                                        <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
+                                                    </ul>
+                                                </div>
+                                            </span>
+                                        </PopupRemoteTrigger>
                                     </DropdownItem>
                                     <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
                                     <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
@@ -289,6 +302,16 @@ export default function Home() {
                     </ul>
                 </footer>
             </div>
+
+            <Popup id='theme-popup'>
+                <PopupTrigger display={false} id='theme-popup' />
+                <PopupContent className={`theme-${theme} w-auto max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                    <PopupHeader>
+                        <h1 className="mr-4 text-[35px] text-text">under construction... 🚧👷‍♂️</h1>
+                        <PopupExitButton />
+                    </PopupHeader>
+                </PopupContent>
+            </Popup>
         </ThemeProvider>
     );
 }

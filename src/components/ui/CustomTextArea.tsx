@@ -34,14 +34,14 @@ function CustomTextArea() {
             <ul className="flex flex-col w-full h-full">
                 <li>
                     <textarea
-                        className={`relative transition-all duration-300 outline-none border-b-[1px] border-accent w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-subtext placeholder-subtext`}
+                        className={`relative transition-all duration-300 outline-none border-b-[1px] border-highlight w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-subtext placeholder-subtext`}
                         id="titlefield"
                         placeholder={`  enter title...`}
                     />
                 </li>
                 <li className="w-full h-full">
                     <textarea
-                        className={`relative transition-all duration-300 border-b-[1px] border-accent outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-subtext placeholder-subtext sm:border-none`}
+                        className={`relative transition-all duration-300 border-b-[1px] border-highlight outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-subtext placeholder-subtext sm:border-none`}
                         id="textfield"
                         placeholder="   start typing..."
                     />
