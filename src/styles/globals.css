@@ -6,19 +6,11 @@
 
 @layer utilities {
   .editor-button {
-    @apply sm:hidden cursor-pointer min-w-[60px] h-[30px] text-subtext border-2 border-subtext mr-2 ml-2 pr-2 pl-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-text active:border-highlight hover:text-text active:text-highlight
+    @apply sm:hidden cursor-pointer min-w-[60px] h-[30px] text-subtext border-2 border-subtext mr-2 ml-2 pr-2 pl-2 transition-all duration-300 rounded-xl hover:rounded-2xl hover:border-text active:transition-none active:border-highlight hover:text-text active:text-highlight
   }
 
   .footer-button {
-    @apply cursor-pointer w-full h-full transition-all duration-300 border-highlight hover:bg-text hover:text-highlight hover:border-highlight
-  }
-
-  .dropdown-button {
-    @apply 
-  }
-
-  .tw-bg-op-1 {
-    --tw-bg-opacity: 1
+    @apply hidden sm:block cursor-pointer w-full h-full transition-all duration-300 border-highlight hover:bg-text hover:text-highlight hover:border-highlight 
   }
 }
 

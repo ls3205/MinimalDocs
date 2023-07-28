@@ -1,8 +1,34 @@
 'use client'
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function CustomTextArea() {
+    const [wordCount, setWordCount] = useState(0);
+
+    useEffect(() => {
+        const textfield = document.getElementById(
+            "textfield"
+        ) as HTMLTextAreaElement;
+        const countWords = () => {
+            let res = [];
+            let str = textfield.value
+                .replace(/[\t\n\r\.\?\!]/gm, " ")
+                .split(" ");
+            str.map((s) => {
+                let trimStr = s.trim();
+                if (trimStr.length > 0) {
+                    res.push(trimStr);
+                }
+            });
+            setWordCount(res.length);
+
+            const wordCounter = document.getElementById('word-count-span')
+            wordCounter.innerHTML = res.length as unknown as string;
+        };
+        textfield.addEventListener("input", countWords);
+        return () => textfield.removeEventListener("input", countWords);
+    }, []);
+
     useEffect(() => {
         const textfield = document.getElementById('textfield') as HTMLTextAreaElement;
 

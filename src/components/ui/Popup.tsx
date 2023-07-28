@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
 const PopedContext = createContext({poped: undefined, setPoped: undefined});
@@ -7,16 +9,15 @@ const PopupRefContext = createContext(undefined);
 const Popup = ({children, id=undefined, ...props}) => {
     const [poped, setPoped] = useState(false);
     const popedContextValue = {poped, setPoped};
-    const [remoteTrigger, setRemoteTrigger] = useState(undefined as HTMLElement);
     const buttonRef = useRef(null);
     const popupRef = useRef(null)
+
+    var remoteTrigger;
 
     const getRemoteTrigger = () => {
         const remoteTriggerElement = document.getElementById(`${id}-remote`);
         if (remoteTriggerElement) {
-            setRemoteTrigger(remoteTriggerElement);
-            console.log(remoteTrigger)
-            console.log(remoteTriggerElement)
+            remoteTrigger = remoteTriggerElement;
             return remoteTriggerElement;
         } else {
             return undefined;
@@ -26,17 +27,11 @@ const Popup = ({children, id=undefined, ...props}) => {
     useEffect(() => {
         const handler = (e) => {
             getRemoteTrigger();
-            console.log(remoteTrigger)
-
+            
             if (popupRef.current && !popupRef.current.contains(e.target)) {
                 if (remoteTrigger && !remoteTrigger.contains(e.target)) {
-                    console.log('a')
                     setPoped(false);
                 } else if (buttonRef.current && !buttonRef.current.contains(e.target)) {
-                    console.log('b')
-                    setPoped(false);
-                } else {
-                    console.log('c')
                     setPoped(false);
                 }
             }
@@ -90,13 +85,13 @@ const PopupRemoteTrigger = ({id=undefined, triggerId=undefined, bypassButton=fal
     
     return (
         !bypassButton ? (
-            <button className="w-full h-full flex flex-row" onClick={clickTrigger} id={id}>
+            <button className="w-full h-full flex flex-row" onClick={clickTrigger} id={id} {...props}>
                 {
                     children
                 }
             </button>
         ) : (
-            <div className="w-full h-full flex flex-row" onClick={clickTrigger} id={id}>
+            <div className="w-full h-full flex flex-row" onClick={clickTrigger} id={id} {...props}>
                 { children }
             </div>
         )
@@ -141,7 +136,7 @@ const PopupExitButton = ({...props}) => {
         ) : (
             <button
                 onClick={() => setPoped(false)}
-                className="right-0 relative m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
+                className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
             >
                 <span className="material-icons-outlined text-2xl relative text-subtext group-hover:text-text transition-all duration-300">
                     close

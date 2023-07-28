@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/context/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,11 @@ export default function RootLayout({
             <head>
                 <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
             </head>
-            <body className={inter.className}>{children}</body>
+            <body className={inter.className}>
+                <ThemeProvider>
+                    {children}
+                </ThemeProvider>
+            </body>
         </html>
     );
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
 const ExpandedContext = createContext({expanded: undefined, setExpanded: undefined});
