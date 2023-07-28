@@ -8,7 +8,6 @@ const PopupRefContext = createContext(undefined);
 
 const Popup = ({children, id=undefined, ...props}) => {
     const [poped, setPoped] = useState(false);
-    const popedContextValue = {poped, setPoped};
     const buttonRef = useRef(null);
     const popupRef = useRef(null)
 
@@ -42,7 +41,7 @@ const Popup = ({children, id=undefined, ...props}) => {
     }, [])
 
     return (
-        <PopedContext.Provider value={popedContextValue}>
+        <PopedContext.Provider value={{poped, setPoped}}>
             <ButtonRefContext.Provider value={buttonRef}>
                 <PopupRefContext.Provider value={popupRef}>
                     <div {...props}>

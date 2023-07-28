@@ -214,9 +214,8 @@ export default function Home() {
                     <li className="w-[20%] align-middle justify-center">
                         <PopupRemoteTrigger
                             className="footer-button"
-                            id='doc-info-remote'
-                            triggerId='doc-info'
-                            // onClick={() => setDocInfoPopup(!docInfoPopup)}
+                            id='doc-info-mobile-remote'
+                            triggerId='doc-info-mobile'
                         >
                             <span className="material-icons-outlined text-[4vh]">
                                 subject
@@ -261,7 +260,7 @@ export default function Home() {
                     <ul>
                         {Object.entries(Themes).map(([key, value]) => {
                             return (
-		    					<li className="flex flex-row group w-[calc(100%-1rem)] m-2 mt-0 mb-0 p-2 pt-3 pb-3 rounded-lg hover:bg-highlight transition-all duration-300 active:transition-none active:bg-subtext" onClick={() => {setTheme(key); setThemeRollback(key)}} onMouseOver={() => {setTheme(key); console.log(key)}} onMouseLeave={() => setTheme(themeRollback)} key={key}>
+		    					<li className="flex flex-row group w-[calc(100%-1rem)] m-2 mt-0 mb-0 p-2 pt-3 pb-3 rounded-lg hover:bg-highlight transition-all duration-300 active:transition-none active:bg-subtext" onClick={() => {setTheme(key); setThemeRollback(key)}} onMouseOver={() => {setTheme(key)}} onMouseLeave={() => setTheme(themeRollback)} key={key}>
 		    						<span className="text-lg text-text">{key}</span>
 		    						<span className={`theme-${key} mr-8 right-0 absolute`}>
                             			<div>
@@ -281,6 +280,16 @@ export default function Home() {
 
             <Popup id='doc-info'>
                 <PopupTrigger display={false} id='doc-info' />
+                <PopupContent className={`theme-${theme} w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                    <PopupHeader>
+                        <h1 className="mr-4 text-[35px] text-text">under construction... 🚧👷‍♂️</h1>
+                        <PopupExitButton />
+                    </PopupHeader>
+                </PopupContent>
+            </Popup>
+
+            <Popup id='doc-info-mobile'>
+                <PopupTrigger display={false} id='doc-info-mobile' />
                 <PopupContent className={`theme-${theme} w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
                     <PopupHeader>
                         <h1 className="mr-4 text-[35px] text-text">under construction... 🚧👷‍♂️</h1>
