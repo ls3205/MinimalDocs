@@ -44,7 +44,7 @@ export const createCSSSelector = (selector:string, style:string) => {
     }
 
     if (mediaType === "string") {
-        for (var i = 0, l = styleSheet!.rules.length; i < l; i++) {
+        for (var i = 0, l = styleSheet!.rules.length as number; i < l; i++) {
             if (
                 //@ts-ignore
                 styleSheet!.rules[i].selectorText && styleSheet!.rules[i].selectorText.toLowerCase() ==
