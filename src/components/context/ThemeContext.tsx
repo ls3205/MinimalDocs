@@ -2,12 +2,6 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import {
-    createCSSSelector
-} from "@scripts"
-
-import { Themes } from "../themes/themes";
-
 const ThemeContext = createContext({theme: '', setTheme: (newTheme) => {}});
 
 const ThemeRollbackContext = createContext({themeRollback: '', setThemeRollback: (newTheme) => {}});
@@ -23,16 +17,6 @@ export const useThemeRollback = () => {
 export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(undefined)
     const [themeRollback, setThemeRollback] = useState(undefined)
-
-    useEffect(() => {
-        Object.entries(Themes).map(([key, value]) => {
-            var tempCSSString = "";
-            Object.entries(value).map(([subkey, subvalue]) => {
-                tempCSSString += `${subkey}: ${subvalue};`;
-            });
-            createCSSSelector(`.theme-${key}`, tempCSSString);
-        });
-    }, []);
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");

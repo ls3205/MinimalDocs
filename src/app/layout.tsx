@@ -2,7 +2,12 @@ import "../styles/globals.css";
 import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/context/ThemeContext";
+import { ThemeProvider } from "@components/context/ThemeContext";
+
+import "../components/themes/carbon.css"
+import "../components/themes/flashbang.css"
+import "../components/themes/fledgling.css"
+import "../components/themes/mashu.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
