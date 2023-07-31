@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-const getLocalStorageTheme = () => {
-    return window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : '';
-}
-
-const ThemeContext = createContext({theme: getLocalStorageTheme() , setTheme: (newTheme) => {}});
+const ThemeContext = createContext({theme: '' , setTheme: (newTheme) => {}});
 
 const ThemeRollbackContext = createContext({themeRollback: '', setThemeRollback: (newTheme) => {}});
 
