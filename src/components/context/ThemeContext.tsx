@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-const ThemeContext = createContext({theme: '' , setTheme: (newTheme) => {}});
+const ThemeContext = createContext({theme: 'flashbang' , setTheme: (newTheme) => {}});
 
-const ThemeRollbackContext = createContext({themeRollback: '', setThemeRollback: (newTheme) => {}});
+const ThemeRollbackContext = createContext({themeRollback: 'flashbang', setThemeRollback: (newTheme) => {}});
 
 export const useTheme = () => {
     return useContext(ThemeContext);
