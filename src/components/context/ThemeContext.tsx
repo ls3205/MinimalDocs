@@ -20,7 +20,7 @@ export function ThemeProvider({ children }) {
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");
-        if (storedTheme !== undefined) {
+        if (storedTheme !== null) {
             setTheme(storedTheme);
             setThemeRollback(storedTheme);
         } else {
