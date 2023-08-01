@@ -217,6 +217,7 @@ export default function Home() {
                                         Download
                                     </span>
                                 </DropdownItem>
+                                <DropdownDivider className='!bg-text relative w-[90%] left-[5%]' />
                                 <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
                                     <span
                                         className="material-icons-outlined mr-1 text-[20px] top-[5px] relative"
