@@ -2,18 +2,52 @@
 
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
-const ExpandedContext = createContext({expanded: undefined, setExpanded: undefined});
-const ButtonRefContext = createContext(undefined);
-const DropdownRefContext = createContext(undefined);
+type DropdownProps = {
+    children: React.ReactNode;
+    className?: string;
+}
 
-const Dropdown = ({children, ...props}) => {
+type DropdownTriggerProps = {
+    children: React.ReactNode;
+    className?: string;
+    bypassButton?: boolean;
+}
+
+type DropdownItemsProps = {
+    children: React.ReactNode;
+    className?: string;
+    anchor?: string;
+}
+
+type DropdownItemProps = {
+    children: React.ReactNode;
+    className?: string;
+}
+
+type DropdownDividerProps = {
+    className?: string;
+}
+
+type DropdownItemIconProps = {
+    icon: string;
+}
+
+type ExpandedContextType = {
+    expanded: boolean;
+    setExpanded: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+}
+
+const ExpandedContext = createContext<ExpandedContextType>({expanded: false, setExpanded: undefined});
+const ButtonRefContext = createContext<any>(undefined);
+const DropdownRefContext = createContext<any>(undefined);
+
+const Dropdown: React.FC<DropdownProps> = ({children=undefined, ...props}) => {
     const [expanded, setExpanded] = useState(false);
-    const expandedContextValue = {expanded, setExpanded}
-    const dropdownRef = useRef(null);
-    const buttonRef = useRef(null);
+    const dropdownRef = useRef<any>(null);
+    const buttonRef = useRef<any>(null);
 
     useEffect(() => {
-        const handler = (e) => {
+        const handler = (e: MouseEvent): void => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 if (buttonRef.current && !buttonRef.current.contains(e.target)) {
                     setExpanded(false)
@@ -26,7 +60,7 @@ const Dropdown = ({children, ...props}) => {
     }, [])
 
     return (
-        <ExpandedContext.Provider value={expandedContextValue}>
+        <ExpandedContext.Provider value={{expanded, setExpanded}}>
             <ButtonRefContext.Provider value={buttonRef}>
                 <DropdownRefContext.Provider value={dropdownRef}>
                     <div {...props}>
@@ -40,26 +74,26 @@ const Dropdown = ({children, ...props}) => {
     )
 }
 
-const DropdownTrigger = ({children, bypassButton, ...props}) => {
+const DropdownTrigger: React.FC<DropdownTriggerProps> = ({children=undefined, bypassButton=false, ...props}) => {
     const {expanded, setExpanded} = useContext(ExpandedContext);
     const buttonRef = useContext(ButtonRefContext);
 
     return (
         !bypassButton ? (
-            <button onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
+            <button onClick={() => setExpanded!(!expanded)} ref={buttonRef} {...props}>
                 {
                     children
                 }
             </button>
         ) : (
-            <div className="w-full h-full" onClick={() => setExpanded(!expanded)} ref={buttonRef} {...props}>
+            <div className="w-full h-full" onClick={() => setExpanded!(!expanded)} ref={buttonRef} {...props}>
                 { children }
             </div>
         )
     )
 }
 
-const DropdownItems = ({children, className, anchor, ...props}) => {
+const DropdownItems: React.FC<DropdownItemsProps> = ({children=undefined, className='', anchor='bm', ...props}) => {
     const {expanded, setExpanded} = useContext(ExpandedContext);
     const dropdownRef = useContext(DropdownRefContext)
 
@@ -78,7 +112,7 @@ const DropdownItems = ({children, className, anchor, ...props}) => {
     )
 }
 
-const DropdownItem = ({children, className, ...props}) => {
+const DropdownItem: React.FC<DropdownItemProps> = ({children=undefined, className='', ...props}) => {
     return (
         <div className={`flex flex-row ${className}`} {...props}>
             {
@@ -88,15 +122,15 @@ const DropdownItem = ({children, className, ...props}) => {
     )
 }
 
-const DropdownDivider = ({className, ...props}) => {
+const DropdownDivider: React.FC<DropdownDividerProps> = ({className='', ...props}) => {
     return (
         <div className={`h-[2px] rounded-full bg-black ${className}`} {...props} />
     )
 }
 
-const DropdownItemIcon = ({icon}) => {
+const DropdownItemIcon: React.FC<DropdownItemIconProps> = ({icon = '', ...props}) => {
     return (
-        <span className="material-icons-outlined mr-1 text-[20px] relative top-[5px]">
+        <span className="material-icons-outlined mr-1 text-[20px] relative top-[5px]" {...props}>
             {
                 icon
             }

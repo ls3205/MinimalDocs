@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 
+import {
+    getCachedData
+} from "@scripts"
+
 function CustomTextArea() {
-    const [wordCount, setWordCount] = useState(0);
+    const [wordCount, setWordCount] = useState<number>(0);
 
     useEffect(() => {
-        const textfield = document.getElementById(
+        const textfield: HTMLTextAreaElement = document.getElementById(
             "textfield"
         ) as HTMLTextAreaElement;
-        const countWords = () => {
+        const countWords = (): void => {
             let res = [];
             let str = textfield.value
                 .replace(/[\t\n\r\.\?\!]/gm, " ")
@@ -22,25 +26,29 @@ function CustomTextArea() {
             });
             setWordCount(res.length);
 
-            const wordCounter = document.getElementById('word-count-span')
+            const wordCounter: HTMLSpanElement = document.getElementById('word-count-span')!
             wordCounter.innerHTML = res.length as unknown as string;
         };
         textfield.addEventListener("input", countWords);
         return () => textfield.removeEventListener("input", countWords);
     }, []);
 
-    useEffect(() => {
-        const textfield = document.getElementById('textfield') as HTMLTextAreaElement;
+    useEffect(() => { 
+        getCachedData();
+    }, [])
 
-        const handleIndent = (e:KeyboardEvent) => {
+    useEffect(() => {
+        const textfield: HTMLTextAreaElement = document.getElementById('textfield') as HTMLTextAreaElement;
+
+        const handleIndent = (e: KeyboardEvent): void => {
             if (e.key === "Tab") {
                 e.stopPropagation();
                 e.preventDefault();
 
-                textfield?.setRangeText(
+                textfield!.setRangeText(
                     "\t",
-                    textfield?.selectionStart,
-                    textfield?.selectionEnd,
+                    textfield!.selectionStart,
+                    textfield!.selectionEnd,
                     "end"
                 );
             }
@@ -48,9 +56,7 @@ function CustomTextArea() {
 
         textfield.addEventListener("keydown", handleIndent);
 
-        return () => {
-            textfield.removeEventListener("keydown", handleIndent);
-        };
+        return () => textfield.removeEventListener("keydown", handleIndent);
     }, []);
 
     return (
@@ -60,14 +66,14 @@ function CustomTextArea() {
             <ul className="flex flex-col w-full h-full">
                 <li>
                     <textarea
-                        className={`relative transition-all duration-300 outline-none border-b-[1px] border-highlight w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-subtext placeholder-subtext`}
+                        className={`relative transition-all duration-300 outline-none border-b-[1px] border-highlight w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-highlight placeholder-subtext selection:bg-highlight`}
                         id="titlefield"
                         placeholder={`  enter title...`}
                     />
                 </li>
                 <li className="w-full h-full">
                     <textarea
-                        className={`relative transition-all duration-300 border-b-[1px] border-highlight outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-subtext placeholder-subtext sm:border-none`}
+                        className={`relative transition-all duration-300 border-b-[1px] border-highlight outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-highlight placeholder-subtext sm:border-none selection:bg-highlight`}
                         id="textfield"
                         placeholder="   start typing..."
                     />

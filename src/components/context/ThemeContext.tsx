@@ -2,17 +2,25 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import {
-    createCSSSelector
-} from "@scripts"
+type ThemeProviderProps = {
+    children?: React.ReactNode
+}
 
-import { Themes } from "../themes/themes";
+type ThemeContextType = {
+    theme: string;
+    setTheme: React.Dispatch<React.SetStateAction<string>>
+}
 
-const ThemeContext = createContext({theme: '', setTheme: (newTheme) => {}});
+type ThemeRollbackContextType = {
+    themeRollback: string;
+    setThemeRollback: React.Dispatch<React.SetStateAction<string>>
+}
 
-const ThemeRollbackContext = createContext({themeRollback: '', setThemeRollback: (newTheme) => {}});
+const ThemeContext = createContext<ThemeContextType>({theme: '' , setTheme: (() => {}) as React.Dispatch<React.SetStateAction<string>>});
 
-export const useTheme = () => {
+const ThemeRollbackContext = createContext<ThemeRollbackContextType>({themeRollback: '', setThemeRollback: (() => {}) as React.Dispatch<React.SetStateAction<string>>});
+
+export const useTheme = (): ThemeContextType => {
     return useContext(ThemeContext);
 }
 
@@ -20,23 +28,13 @@ export const useThemeRollback = () => {
     return useContext(ThemeRollbackContext);
 }
 
-export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState(undefined)
-    const [themeRollback, setThemeRollback] = useState(undefined)
-
-    useEffect(() => {
-        Object.entries(Themes).map(([key, value]) => {
-            var tempCSSString = "";
-            Object.entries(value).map(([subkey, subvalue]) => {
-                tempCSSString += `${subkey}: ${subvalue};`;
-            });
-            createCSSSelector(`.theme-${key}`, tempCSSString);
-        });
-    }, []);
+export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({ children }) => {
+    const [theme, setTheme] = useState<string>('')
+    const [themeRollback, setThemeRollback] = useState<string>('')
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");
-        if (storedTheme !== (undefined || null)) {
+        if (storedTheme !== null) {
             setTheme(storedTheme);
             setThemeRollback(storedTheme);
         } else {

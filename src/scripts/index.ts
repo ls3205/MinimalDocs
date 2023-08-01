@@ -6,6 +6,7 @@
 
 export * from "./clearText"
 export * from "./copyText"
-export * from "./createCSSSelector"
 export * from "./downloadFile"
 export * from "./uploadFile"
+export * from "./getCachedData"
+export * from "./saveCacheData"
