@@ -26,5 +26,12 @@ export const Themes = {
         "--subtext": "#616161",
         "--highlight": "#f66e0d",
         "--menu": "#2b2b2b"
+    },
+    "9009": {
+        "--bg": "#eeebe2",
+        "--text": "#080909",
+        "--subtext": "#99947f",
+        "--highlight": "#080909",
+        "--menu": "#d3cfc1"
     }
 }
