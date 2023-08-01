@@ -1,4 +1,4 @@
-interface SavedTextJSON {
+type SavedTextJSON = {
     title: string;
     text: string;
 }

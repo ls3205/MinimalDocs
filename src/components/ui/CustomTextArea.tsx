@@ -3,11 +3,19 @@
 import React, { useState, useEffect } from "react";
 
 import {
-    getCachedData
+    getCachedData,
+    saveCacheData
 } from "@scripts"
+
+type SavedState = {
+    state: "saved" | "saving" | "not saved"
+}
 
 function CustomTextArea() {
     const [wordCount, setWordCount] = useState<number>(0);
+    const [saved, setSaved] = useState<SavedState>({state: "saved"});
+    var primaryTimer: ReturnType<typeof setTimeout>;
+    var secondaryTimer: ReturnType<typeof setTimeout>;
 
     useEffect(() => {
         const textfield: HTMLTextAreaElement = document.getElementById(
@@ -33,7 +41,48 @@ function CustomTextArea() {
         return () => textfield.removeEventListener("input", countWords);
     }, []);
 
-    useEffect(() => { 
+    useEffect(() => {
+        const handler = () => {
+            setSaved({state: 'not saved'})
+
+            if (secondaryTimer) {
+                clearTimeout(secondaryTimer);
+            }
+
+            secondaryTimer = setTimeout(() => {
+                setSaved({state: 'saving'})
+            }, 1000)
+
+            if (primaryTimer) {
+                clearTimeout(primaryTimer);
+            }
+        
+            primaryTimer = setTimeout(() => {
+                handleTextTimeout();
+            }, 2000);
+        
+            const handleTextTimeout = () => {
+                setSaved({state: 'saved'})
+                saveCacheData();
+            };
+        
+            return () => {
+                clearTimeout(primaryTimer);
+                clearTimeout(secondaryTimer);
+            };
+        }
+
+        const titlefield: HTMLTextAreaElement = document.getElementById('titlefield') as HTMLTextAreaElement;
+        const textfield: HTMLTextAreaElement = document.getElementById('textfield') as HTMLTextAreaElement;
+        titlefield.addEventListener("input", handler)
+        textfield.addEventListener("input", handler)
+        return () => {
+            titlefield.removeEventListener("input", handler);
+            textfield.removeEventListener("input", handler);
+        }
+    }, [])
+
+    useEffect(() => {
         getCachedData();
     }, [])
 
@@ -66,14 +115,24 @@ function CustomTextArea() {
             <ul className="flex flex-col w-full h-full">
                 <li>
                     <textarea
-                        className={`relative transition-all duration-300 outline-none border-b-[1px] border-highlight w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-highlight placeholder-subtext selection:bg-highlight`}
+                        className={[
+                            `relative transition-all duration-300 outline-none border-b-[2px]  w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-highlight placeholder-subtext selection:bg-highlight`,
+                            saved.state === 'saved' && 'border-subtext',
+                            saved.state === 'saving' && 'border-highlight',
+                            saved.state === 'not saved' && 'border-red-600'
+                        ].filter(Boolean).join(' ')}
                         id="titlefield"
                         placeholder={`  enter title...`}
                     />
                 </li>
                 <li className="w-full h-full">
                     <textarea
-                        className={`relative transition-all duration-300 border-b-[1px] border-highlight outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-highlight placeholder-subtext sm:border-none selection:bg-highlight`}
+                        className={[
+                            `relative transition-all duration-300 border-b-[2px]  outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-highlight placeholder-subtext sm:border-none selection:bg-highlight`,
+                            saved.state === 'saved' && 'border-subtext',
+                            saved.state === 'saving' && 'border-highlight',
+                            saved.state === 'not saved' && 'border-red-600'
+                        ].filter(Boolean).join(' ')}
                         id="textfield"
                         placeholder="   start typing..."
                     />
