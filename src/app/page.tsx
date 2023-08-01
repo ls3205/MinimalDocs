@@ -44,14 +44,14 @@ export default function Home() {
         <div
             className={[
                 `app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300`,
-                `theme-${theme}`,
+                `${theme ? `theme-${theme}` : 'theme-black'}`,
             ]
                 .filter(Boolean)
                 .join(" ")}
         >
             <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
                 <DropdownTrigger bypassButton={false}>
-                    <DesktopSVG activeCheck={null} />
+                    <DesktopSVG />
                 </DropdownTrigger>
                 <DropdownItems anchor='bm' className='bg-menu border-[1px] rounded-lg'>
                     <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
@@ -171,7 +171,7 @@ export default function Home() {
                     </li>
                     <li className="w-[20%]">
                         <Dropdown className='w-full h-full align-middle justify-center group hover:bg-text transition-all duration-300'>
-                            <DropdownTrigger className='footer-button' bypassButton={false}>
+                            <DropdownTrigger className='footer-button'>
                                 <span className="relative material-icons-outlined text-[4vh]">
                                     save
                                 </span>

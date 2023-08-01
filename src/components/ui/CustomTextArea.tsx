@@ -6,7 +6,7 @@ function CustomTextArea() {
     const [wordCount, setWordCount] = useState(0);
 
     useEffect(() => {
-        const textfield = document.getElementById(
+        const textfield: HTMLTextAreaElement = document.getElementById(
             "textfield"
         ) as HTMLTextAreaElement;
         const countWords = () => {
@@ -22,7 +22,7 @@ function CustomTextArea() {
             });
             setWordCount(res.length);
 
-            const wordCounter = document.getElementById('word-count-span')
+            const wordCounter: HTMLSpanElement = document.getElementById('word-count-span')!
             wordCounter.innerHTML = res.length as unknown as string;
         };
         textfield.addEventListener("input", countWords);
@@ -30,17 +30,17 @@ function CustomTextArea() {
     }, []);
 
     useEffect(() => {
-        const textfield = document.getElementById('textfield') as HTMLTextAreaElement;
+        const textfield: HTMLTextAreaElement = document.getElementById('textfield') as HTMLTextAreaElement;
 
-        const handleIndent = (e:KeyboardEvent) => {
+        const handleIndent = (e: KeyboardEvent): void => {
             if (e.key === "Tab") {
                 e.stopPropagation();
                 e.preventDefault();
 
-                textfield?.setRangeText(
+                textfield!.setRangeText(
                     "\t",
-                    textfield?.selectionStart,
-                    textfield?.selectionEnd,
+                    textfield!.selectionStart,
+                    textfield!.selectionEnd,
                     "end"
                 );
             }
@@ -48,9 +48,7 @@ function CustomTextArea() {
 
         textfield.addEventListener("keydown", handleIndent);
 
-        return () => {
-            textfield.removeEventListener("keydown", handleIndent);
-        };
+        return () => textfield.removeEventListener("keydown", handleIndent);
     }, []);
 
     return (

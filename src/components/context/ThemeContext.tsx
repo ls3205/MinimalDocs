@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-const ThemeContext = createContext({theme: 'flashbang' , setTheme: (newTheme) => {}});
+type ThemeProviderProps = {
+    children: React.ReactNode
+}
 
-const ThemeRollbackContext = createContext({themeRollback: 'flashbang', setThemeRollback: (newTheme) => {}});
+const ThemeContext = createContext({theme: 'flashbang' , setTheme: (newTheme: string) => {}});
+
+const ThemeRollbackContext = createContext({themeRollback: 'flashbang', setThemeRollback: (newTheme: string) => {}});
 
 export const useTheme = () => {
     return useContext(ThemeContext);
@@ -14,9 +18,9 @@ export const useThemeRollback = () => {
     return useContext(ThemeRollbackContext);
 }
 
-export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState(undefined)
-    const [themeRollback, setThemeRollback] = useState(undefined)
+export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({ children }) => {
+    const [theme, setTheme] = useState('')
+    const [themeRollback, setThemeRollback] = useState('')
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");

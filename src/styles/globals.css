@@ -27,6 +27,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.theme-black {
+  --bg: #000;
+  --text: #000;
+  --subtext: #000;
+  --highlight: #000;
+  --menu: #000;
+}
  
 @layer base {
   :root {

@@ -1,5 +1,5 @@
 export const copyText = () => {
-    const textfield = document.getElementById("textfield") as HTMLTextAreaElement;
+    const textfield: HTMLTextAreaElement = document.getElementById("textfield") as HTMLTextAreaElement;
     textfield.select();
     document.execCommand("copy");
 };

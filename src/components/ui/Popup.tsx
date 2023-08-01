@@ -2,19 +2,54 @@
 
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
-const PopedContext = createContext({poped: undefined, setPoped: undefined});
-const ButtonRefContext = createContext(undefined);
-const PopupRefContext = createContext(undefined);
+type PopupProps = {
+    children?: React.ReactNode;
+    id?: string;
+}
 
-const Popup = ({children, id=undefined, ...props}) => {
-    const [poped, setPoped] = useState(false);
-    const buttonRef = useRef(null);
-    const popupRef = useRef(null)
+type PopupTriggerProps = {
+    children?: React.ReactNode;
+    id?: string;
+    bypassButton?: boolean;
+    display?: boolean;
+}
 
-    var remoteTrigger;
+type PopupRemoteTriggerProps = {
+    children?: React.ReactNode;
+    id?: string;
+    className?: string;
+    triggerId?: string;
+    bypassButton?: boolean;
+}
 
-    const getRemoteTrigger = () => {
-        const remoteTriggerElement = document.getElementById(`${id}-remote`);
+type PopupContentProps = {
+    children?: React.ReactNode;
+    className?: string;
+}
+
+type PopupHeaderProps = {
+    children?: React.ReactNode;
+    className?: string;
+}
+
+type PopedContextType = {
+    poped: boolean;
+    setPoped: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+}
+
+const PopedContext = createContext<PopedContextType>({poped: false, setPoped: undefined});
+const ButtonRefContext = createContext<any>(undefined);
+const PopupRefContext = createContext<any>(undefined);
+
+const Popup: React.FC<PopupProps> = ({children=undefined, id='', ...props}) => {
+    const [poped, setPoped] = useState<boolean>(false);
+    const buttonRef = useRef<any>(null);
+    const popupRef = useRef<any>(null)
+
+    var remoteTrigger: HTMLElement;
+
+    const getRemoteTrigger = (): HTMLElement | undefined => {
+        const remoteTriggerElement: HTMLElement = document.getElementById(`${id}-remote`)!;
         if (remoteTriggerElement) {
             remoteTrigger = remoteTriggerElement;
             return remoteTriggerElement;
@@ -24,10 +59,11 @@ const Popup = ({children, id=undefined, ...props}) => {
     }
 
     useEffect(() => {
-        const handler = (e) => {
+        const handler = (e: MouseEvent): void => {
             getRemoteTrigger();
             
             if (popupRef.current && !popupRef.current.contains(e.target)) {
+                // @ts-ignore
                 if (remoteTrigger && !remoteTrigger.contains(e.target)) {
                     setPoped(false);
                 } else if (buttonRef.current && !buttonRef.current.contains(e.target)) {
@@ -53,33 +89,33 @@ const Popup = ({children, id=undefined, ...props}) => {
     )
 }
 
-const PopupTrigger = ({id=undefined, bypassButton=false, display=true, children=undefined, ...props}) => {
+const PopupTrigger: React.FC<PopupTriggerProps> = ({id='', bypassButton=false, display=true, children=undefined, ...props}) => {
     const {poped, setPoped} = useContext(PopedContext);
     const buttonRef = useContext(ButtonRefContext);
 
     return (
         display ? (
             !bypassButton ? (
-                <button onClick={() => setPoped(!poped)} ref={buttonRef} {...props}>
+                <button onClick={() => setPoped!(!poped)} ref={buttonRef} {...props}>
                     {
                         children
                     }
                 </button>
             ) : (
-                <div className="w-full h-full" onClick={() => setPoped(!poped)} ref={buttonRef} {...props}>
+                <div className="w-full h-full" onClick={() => setPoped!(!poped)} ref={buttonRef} {...props}>
                     { children }
                 </div>
             )
         ) : (
-            <button onClick={() => setPoped(!poped)} className="absolute top-0 left-0 w-0 h-0" id={id} />
+            <button onClick={() => setPoped!(!poped)} className="absolute top-0 left-0 w-0 h-0" id={id} />
         )
     )
 }
 
-const PopupRemoteTrigger = ({id=undefined, triggerId=undefined, bypassButton=false, children, ...props}) => {
+const PopupRemoteTrigger: React.FC<PopupRemoteTriggerProps> = ({id='', triggerId='', bypassButton=false, children=undefined, ...props}) => {
     const clickTrigger = () => {
-        const trigger = document.getElementById(triggerId);
-        trigger.click();
+        const trigger: HTMLElement = document.getElementById(triggerId)!;
+        trigger!.click();
     }
     
     return (
@@ -97,7 +133,7 @@ const PopupRemoteTrigger = ({id=undefined, triggerId=undefined, bypassButton=fal
     )
 }
 
-const PopupContent = ({children, className=undefined, ...props}) => {
+const PopupContent: React.FC<PopupContentProps> = ({children=undefined, className=undefined, ...props}) => {
     const {poped, setPoped} = useContext(PopedContext);
     const popupRef = useContext(PopupRefContext)
 
@@ -114,7 +150,7 @@ const PopupContent = ({children, className=undefined, ...props}) => {
     )
 }
 
-const PopupHeader = ({children=undefined, className=undefined}) => {
+const PopupHeader: React.FC<PopupHeaderProps> = ({children=undefined, className=undefined}) => {
     return (
         <div className={`flex flex-row w-full h-auto ${className}`}>
             { children }
@@ -122,19 +158,19 @@ const PopupHeader = ({children=undefined, className=undefined}) => {
     )
 }
 
-const PopupExitButton = ({...props}) => {
+const PopupExitButton: React.FC<any> = ({...props}) => {
     const {poped, setPoped} = useContext(PopedContext);
 
     return (
         props.children ? (
-            <button onClick={() => setPoped(false)}>
+            <button onClick={() => setPoped!(false)}>
                 {
                     props.children
                 }
             </button>
         ) : (
             <button
-                onClick={() => setPoped(false)}
+                onClick={() => setPoped!(false)}
                 className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
             >
                 <span className="material-icons-outlined text-2xl relative text-subtext group-hover:text-text transition-all duration-300">
