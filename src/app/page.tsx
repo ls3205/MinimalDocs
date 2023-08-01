@@ -217,6 +217,18 @@ export default function Home() {
                                         Download
                                     </span>
                                 </DropdownItem>
+                                <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
+                                    <span
+                                        className="material-icons-outlined mr-1 text-[20px] top-[5px] relative"
+                                        onClick={() => saveCacheData()}
+                                    >
+                                        {" "}
+                                        save{" "}
+                                    </span>
+                                    <span className="text-[20px]">
+                                        Save
+                                    </span>
+                                </DropdownItem>
                             </DropdownItems>
                         </Dropdown>
                     </li>
