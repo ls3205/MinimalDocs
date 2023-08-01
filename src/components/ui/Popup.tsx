@@ -173,7 +173,7 @@ const PopupExitButton: React.FC<any> = ({...props}) => {
                 onClick={() => setPoped!(false)}
                 className="right-0 absolute m-2 mr-4 w-[35px] h-[35px] border-2 border-subtext rounded-xl hover:border-text hover:rounded-2xl group transition-all duration-300"
             >
-                <span className="material-icons-outlined text-2xl relative text-subtext group-hover:text-text transition-all duration-300">
+                <span className="material-icons-outlined text-2xl text-subtext group-hover:text-text transition-all duration-300">
                     close
                 </span>
             </button>
