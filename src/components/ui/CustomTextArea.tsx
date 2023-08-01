@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 
+import {
+    getCachedData
+} from "@scripts"
+
 function CustomTextArea() {
-    const [wordCount, setWordCount] = useState(0);
+    const [wordCount, setWordCount] = useState<number>(0);
 
     useEffect(() => {
         const textfield: HTMLTextAreaElement = document.getElementById(
             "textfield"
         ) as HTMLTextAreaElement;
-        const countWords = () => {
+        const countWords = (): void => {
             let res = [];
             let str = textfield.value
                 .replace(/[\t\n\r\.\?\!]/gm, " ")
@@ -28,6 +32,10 @@ function CustomTextArea() {
         textfield.addEventListener("input", countWords);
         return () => textfield.removeEventListener("input", countWords);
     }, []);
+
+    useEffect(() => { 
+        getCachedData();
+    }, [])
 
     useEffect(() => {
         const textfield: HTMLTextAreaElement = document.getElementById('textfield') as HTMLTextAreaElement;

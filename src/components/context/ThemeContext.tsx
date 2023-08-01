@@ -3,14 +3,24 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
 type ThemeProviderProps = {
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
-const ThemeContext = createContext({theme: 'flashbang' , setTheme: (newTheme: string) => {}});
+type ThemeContextType = {
+    theme: string;
+    setTheme: React.Dispatch<React.SetStateAction<string>>
+}
 
-const ThemeRollbackContext = createContext({themeRollback: 'flashbang', setThemeRollback: (newTheme: string) => {}});
+type ThemeRollbackContextType = {
+    themeRollback: string;
+    setThemeRollback: React.Dispatch<React.SetStateAction<string>>
+}
 
-export const useTheme = () => {
+const ThemeContext = createContext<ThemeContextType>({theme: '' , setTheme: (() => {}) as React.Dispatch<React.SetStateAction<string>>});
+
+const ThemeRollbackContext = createContext<ThemeRollbackContextType>({themeRollback: '', setThemeRollback: (() => {}) as React.Dispatch<React.SetStateAction<string>>});
+
+export const useTheme = (): ThemeContextType => {
     return useContext(ThemeContext);
 }
 
@@ -19,8 +29,8 @@ export const useThemeRollback = () => {
 }
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({ children }) => {
-    const [theme, setTheme] = useState('')
-    const [themeRollback, setThemeRollback] = useState('')
+    const [theme, setTheme] = useState<string>('')
+    const [themeRollback, setThemeRollback] = useState<string>('')
 
     useEffect(() => {
         const storedTheme = window.localStorage.getItem("theme");

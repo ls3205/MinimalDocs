@@ -9,6 +9,7 @@ import {
     copyText,
     downloadFile,
     uploadFile,
+    saveCacheData
 } from "@scripts";
 
 import { Themes } from "@components/themes/themes";
@@ -114,6 +115,14 @@ export default function Home() {
                     >
                         {" "}
                         file_download{" "}
+                    </span>
+                </button>
+                <button className="editor-button">
+                    <span 
+                        className="material-icons-outlined"
+                        onClick={() => saveCacheData()}    
+                    >
+                        save
                     </span>
                 </button>
             </div>
