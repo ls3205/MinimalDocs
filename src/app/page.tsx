@@ -1,23 +1,19 @@
-"use client"
-
 import React from "react";
 
-import { CustomTextArea, DesktopSVG, MobileSVG } from "@components/ui";
+import {
+    CustomTextArea,
+    DesktopSVG,
+    MobileSVG,
+    ThemeSelectorList
+} from "@minimaldocs/ui";
 
 import {
-    clearText,
-    copyText,
-    downloadFile,
-    uploadFile,
-    saveCacheData
-} from "@scripts";
-
-import { Themes } from "@components/themes/themes";
-
-import {
-    useTheme,
-    useThemeRollback,
-} from "@components/context/ThemeContext";
+    ClearTextButton,
+    FileDownloadButton,
+    FileUploadButton,
+    CopyTextButton,
+    CacheTextButton
+} from "@minimaldocs/ui"
 
 import {
     Dropdown,
@@ -26,7 +22,7 @@ import {
     DropdownItem,
     DropdownItemIcon,
     DropdownDivider
-} from "@components/ui/Dropdown"
+} from "@minimaldocs/ui"
 
 import {
     Popup,
@@ -35,21 +31,12 @@ import {
     PopupContent,
     PopupHeader,
     PopupExitButton
-} from "@components/ui/Popup"
+} from "@minimaldocs/ui"
 
 export default function Home() {
-    const { theme, setTheme } = useTheme();
-    const { themeRollback, setThemeRollback } = useThemeRollback();
 
     return (
-        <div
-            className={[
-                `app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300`,
-                `${theme ? `theme-${theme}` : 'theme-black'}`,
-            ]
-                .filter(Boolean)
-                .join(" ")}
-        >
+        <div className='app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300'>
             <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
                 <DropdownTrigger bypassButton={false}>
                     <DesktopSVG />
@@ -59,7 +46,7 @@ export default function Home() {
                         <PopupRemoteTrigger id='theme-popup-remote' triggerId='theme-popup'>
                             <DropdownItemIcon icon='dark_mode' />
                             <span className="mr-1 text-[20px]">
-                                {theme}
+                                Theme
                             </span>
                             <span className="mr-1">
                                 <div>
@@ -93,57 +80,13 @@ export default function Home() {
             </div>
             <CustomTextArea />
             <div className="absolute top-[92%] left-[25%]">
-                <button className="editor-button">
-                    <label className="inline-block w-full h-full">
-                        <span className="material-icons-outlined">
-                            {" "}
-                            file_upload{" "}
-                        </span>
-                        <input
-                            type="file"
-                            accept=".txt"
-                            className="hidden"
-                            id="upload"
-                            onChange={uploadFile}
-                        />
-                    </label>
-                </button>
-                <button className="editor-button">
-                    <span
-                        className="material-icons-outlined"
-                        onClick={downloadFile}
-                    >
-                        {" "}
-                        file_download{" "}
-                    </span>
-                </button>
-                <button className="editor-button">
-                    <span 
-                        className="material-icons-outlined"
-                        onClick={() => saveCacheData()}    
-                    >
-                        save
-                    </span>
-                </button>
+                <FileUploadButton className="editor-button" />
+                <FileDownloadButton className="editor-button" />
+                <CacheTextButton className="editor-button" />
             </div>
             <div className="absolute top-[92%] right-[25%]">
-                <button className="editor-button" onClick={copyText}>
-                    <span className="material-icons-outlined">
-                        {" "}
-                        content_copy{" "}
-                    </span>
-                </button>
-                <button
-                    className="editor-button"
-                    onClick={() => {
-                        clearText();
-                    }}
-                >
-                    <span className="material-icons-outlined">
-                        {" "}
-                        backspace{" "}
-                    </span>
-                </button>
+                <CopyTextButton className="editor-button" />
+                <ClearTextButton className="editor-button" />
             </div>
             <footer className="hidden absolute border-t-[1px] border-highlight bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
                 <ul className="flex flex-row w-full h-full">
@@ -157,7 +100,7 @@ export default function Home() {
                                     <PopupRemoteTrigger id='theme-popup-remote' triggerId='theme-popup'>
                                         <DropdownItemIcon icon='dark_mode' />
                                         <span className="mr-1 text-[20px]">
-                                            {theme}
+                                            Theme
                                         </span>
                                         <span className="mr-1">
                                             <div>
@@ -187,48 +130,15 @@ export default function Home() {
                             </DropdownTrigger>
                             <DropdownItems anchor="bottom-mobile" className='bg-menu border-[1px] rounded-lg'>
                                 <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <label className="inline-block w-full h-full">
-                                        <span className="material-icons-outlined mr-1 text-[20px] top-[5px] relative">
-                                            {" "}
-                                            file_upload{" "}
-                                        </span>
-                                        <input
-                                            type="file"
-                                            accept=".txt"
-                                            className="hidden"
-                                            id="upload"
-                                            onChange={uploadFile}
-                                        />
-                                        <span className="text-[20px]">
-                                            Upload
-                                        </span>
-                                    </label>
+                                    <FileUploadButton className="w-full" iconClass="mr-1 text-[20px] top-[5px] relative" title="Upload" />
                                 </DropdownItem>
                                 <DropdownDivider className='!bg-text relative w-[90%] left-[5%]' />
                                 <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <span
-                                        className="material-icons-outlined mr-1 text-[20px] top-[5px] relative"
-                                        onClick={downloadFile}
-                                    >
-                                        {" "}
-                                        file_download{" "}
-                                    </span>
-                                    <span className="text-[20px]">
-                                        Download
-                                    </span>
+                                    <FileDownloadButton className="w-full" iconClass="mr-1 text-[20px] top-[5px] relative" title="Download" />
                                 </DropdownItem>
                                 <DropdownDivider className='!bg-text relative w-[90%] left-[5%]' />
                                 <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <span
-                                        className="material-icons-outlined mr-1 text-[20px] top-[5px] relative"
-                                        onClick={() => saveCacheData()}
-                                    >
-                                        {" "}
-                                        save{" "}
-                                    </span>
-                                    <span className="text-[20px]">
-                                        Save
-                                    </span>
+                                    <CacheTextButton className="w-full" iconClass="mr-1 text-[20px] top-[5px] relative" title="Save" />
                                 </DropdownItem>
                             </DropdownItems>
                         </Dropdown>
@@ -245,64 +155,29 @@ export default function Home() {
                         </PopupRemoteTrigger>
                     </li>
                     <li className="w-[20%] align-middle justify-center">
-                        <button
-                            className="footer-button"
-                            onClick={copyText}
-                        >
-                            <span className="material-icons-outlined text-[4vh]">
-                                {" "}
-                                content_copy{" "}
-                            </span>
-                        </button>
+                        <CopyTextButton className="footer-button" iconClass="text-[4vh]" />
                     </li>
                     <li className="w-[20%] align-middle justify-center">
-                        <button
-                            className="footer-button"
-                            onClick={() => {
-                                clearText();
-                            }}
-                        >
-                            <span className="material-icons-outlined text-[4vh]">
-                                {" "}
-                                backspace{" "}
-                            </span>
-                        </button>
+                        <ClearTextButton className="footer-button" iconClass="text-[4vh]" />
                     </li>
                 </ul>
             </footer>
         
             <Popup id='theme-popup'>
                 <PopupTrigger display={false} id='theme-popup' />
-                <PopupContent className={`theme-${theme} w-[50%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                <PopupContent className={` w-[50%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
                     <PopupHeader>
                         <h1 className="mr-4 text-[35px] text-text">Select Theme</h1>
                         <PopupExitButton className='!absolute !right-0' />
                     </PopupHeader>
                     <DropdownDivider className='relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text' />
-                    <ul>
-                        {Object.entries(Themes).map(([key, value]) => {
-                            return (
-		    					<li className="flex flex-row group w-[calc(100%-1rem)] m-2 mt-0 mb-0 p-2 pt-3 pb-3 rounded-lg hover:bg-highlight transition-all duration-300 active:transition-none active:bg-subtext" onClick={() => {setTheme(key); setThemeRollback(key)}} onMouseOver={() => {setTheme(key)}} onMouseLeave={() => setTheme(themeRollback)} key={key}>
-		    						<span className="text-lg text-text">{key}</span>
-		    						<span className={`theme-${key} mr-8 right-0 absolute`}>
-                            			<div>
-                                			<ul className="flex flex-row bg-bg rounded-lg">
-                                    			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                    			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                    			<li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                			</ul>
-                            			</div>
-                            		</span>	
-		    					</li>
-		    				);
-                        })}
-                    </ul>
+                    <ThemeSelectorList />
                 </PopupContent>
             </Popup>
 
             <Popup id='doc-info'>
                 <PopupTrigger display={false} id='doc-info' />
-                <PopupContent className={`theme-${theme} w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                <PopupContent className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
                     <PopupHeader>
                         <h1 className="mr-4 text-[35px] text-text">under construction... 🚧👷‍♂️</h1>
                         <PopupExitButton />
@@ -312,7 +187,7 @@ export default function Home() {
 
             <Popup id='doc-info-mobile'>
                 <PopupTrigger display={false} id='doc-info-mobile' />
-                <PopupContent className={`theme-${theme} w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                <PopupContent className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
                     <PopupHeader>
                         <h1 className="mr-4 text-[35px] text-text">under construction... 🚧👷‍♂️</h1>
                         <PopupExitButton />
