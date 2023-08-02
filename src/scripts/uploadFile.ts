@@ -1,3 +1,7 @@
+import {
+    saveCacheData
+} from "@minimaldocs/scripts"
+
 export const uploadFile = () => {
     const upload = document.getElementById("upload") as HTMLInputElement;
     const file: File = upload.files![0]!;
@@ -11,4 +15,6 @@ export const uploadFile = () => {
     };
 
     reader.readAsText(file);
+
+    saveCacheData();
 };
