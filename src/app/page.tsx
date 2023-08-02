@@ -4,7 +4,8 @@ import {
     CustomTextArea,
     DesktopSVG,
     MobileSVG,
-    ThemeSelectorList
+    ThemeSelectorList,
+    SettingsMenu
 } from "@minimaldocs/ui";
 
 import {
@@ -60,6 +61,15 @@ export default function Home() {
                         </PopupRemoteTrigger>
                     </DropdownItem>
                     <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
+                    <DropdownItem className="m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
+                        <PopupRemoteTrigger id="settings-popup-remote" triggerId="settings-popup">
+                            <DropdownItemIcon icon="settings" />
+                            <span className="mr-1 text-[20px]">
+                                Settings
+                            </span>
+                        </PopupRemoteTrigger>
+                    </DropdownItem>
+                    <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
                     <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
                         <DropdownItemIcon icon='info' />
                         <span className="text-[20px]">About</span>
@@ -110,6 +120,15 @@ export default function Home() {
                                                     <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
                                                 </ul>
                                             </div>
+                                        </span>
+                                    </PopupRemoteTrigger>
+                                </DropdownItem>
+                                <DropdownDivider className='!bg-text relative w-[90%] left-[5%]'/>
+                                <DropdownItem className='m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300'>
+                                    <PopupRemoteTrigger id="settings-popup-remote" triggerId="settings-popup">
+                                        <DropdownItemIcon icon="settings" />
+                                        <span className="mr-1 text-[20px]">
+                                            Settings
                                         </span>
                                     </PopupRemoteTrigger>
                                 </DropdownItem>
@@ -172,6 +191,18 @@ export default function Home() {
                     </PopupHeader>
                     <DropdownDivider className='relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text' />
                     <ThemeSelectorList />
+                </PopupContent>
+            </Popup>
+
+            <Popup id='settings-popup'>
+                <PopupTrigger display={false} id="settings-popup" />
+                <PopupContent className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}>
+                    <PopupHeader>
+                        <h1 className="mr-4 text-[35px] text-text">Settings</h1>
+                        <PopupExitButton />
+                    </PopupHeader>
+                    <DropdownDivider className='relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text' />
+                    <SettingsMenu />
                 </PopupContent>
             </Popup>
 

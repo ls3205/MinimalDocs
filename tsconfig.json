@@ -30,7 +30,7 @@
       "@minimaldocs/ui": ["./src/components/ui"],
       "@minimaldocs/scripts": ["./src/scripts"],
       "@minimaldocs/lib": ["./src/lib/utils.ts"],
-      "@minimaldocs/context": ["./src/context/ThemeContext.tsx"],
+      "@minimaldocs/context": ["./src/components/context"],
       "@minimaldocs/themes": ["./src/components/themes"],
       "@minimaldocs/types": ["./src/types"],
     }

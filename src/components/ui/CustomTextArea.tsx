@@ -7,13 +7,20 @@ import {
     saveCacheData
 } from "@scripts"
 
+import {
+    useSettings,
+    useSaved
+} from "@minimaldocs/context"
+
 type SavedState = {
     state: "saved" | "saving" | "not saved"
 }
 
 function CustomTextArea() {
     const [wordCount, setWordCount] = useState<number>(0);
-    const [saved, setSaved] = useState<SavedState>({state: "saved"});
+    // const [saved, setSaved] = useState<SavedState>({state: "saved"});
+    const {saved, setSaved} = useSaved();
+    const {settings, setSettings} = useSettings();
     var primaryTimer: ReturnType<typeof setTimeout>;
     var secondaryTimer: ReturnType<typeof setTimeout>;
 
@@ -45,31 +52,33 @@ function CustomTextArea() {
         const handler = () => {
             setSaved({state: 'not saved'})
 
-            if (secondaryTimer) {
-                clearTimeout(secondaryTimer);
-            }
+            if (settings.autosave) {
+                if (secondaryTimer) {
+                    clearTimeout(secondaryTimer);
+                }
 
-            secondaryTimer = setTimeout(() => {
-                setSaved({state: 'saving'})
-            }, 1000)
+                secondaryTimer = setTimeout(() => {
+                    setSaved({state: 'saving'})
+                }, 1000)
 
-            if (primaryTimer) {
-                clearTimeout(primaryTimer);
+                if (primaryTimer) {
+                    clearTimeout(primaryTimer);
+                }
+            
+                primaryTimer = setTimeout(() => {
+                    handleTextTimeout();
+                }, 2000);
+            
+                const handleTextTimeout = () => {
+                    setSaved({state: 'saved'})
+                    saveCacheData();
+                };
+            
+                return () => {
+                    clearTimeout(primaryTimer);
+                    clearTimeout(secondaryTimer);
+                };
             }
-        
-            primaryTimer = setTimeout(() => {
-                handleTextTimeout();
-            }, 2000);
-        
-            const handleTextTimeout = () => {
-                setSaved({state: 'saved'})
-                saveCacheData();
-            };
-        
-            return () => {
-                clearTimeout(primaryTimer);
-                clearTimeout(secondaryTimer);
-            };
         }
 
         const titlefield: HTMLTextAreaElement = document.getElementById('titlefield') as HTMLTextAreaElement;

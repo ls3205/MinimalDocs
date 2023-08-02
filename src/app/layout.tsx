@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@components/context/ThemeContext";
+import { ThemeProvider, SettingsProvider, SavedProvider } from "@minimaldocs/context";
 
 import "../components/themes/carbon.css"
 import "../components/themes/flashbang.css"
@@ -29,9 +29,13 @@ export default function RootLayout({
                 <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
             </head>
             <body className={inter.className}>
-                <ThemeProvider>
-                    {children}
-                </ThemeProvider>
+                <SettingsProvider>
+                    <ThemeProvider>
+                        <SavedProvider>
+                            {children}
+                        </SavedProvider>
+                    </ThemeProvider>
+                </SettingsProvider>
             </body>
         </html>
     );
