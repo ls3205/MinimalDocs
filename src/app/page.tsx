@@ -34,11 +34,13 @@ import {
     PopupExitButton
 } from "@minimaldocs/ui"
 
+import DesktopPrimaryDropdown from "@/components/ui/DesktopPrimaryDropdown";
+
 export default function Home() {
 
     return (
         <div className='app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300'>
-            <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
+            {/* <Dropdown className="absolute left-[7.5%] top-[7.5%] sm:hidden">
                 <DropdownTrigger bypassButton={false}>
                     <DesktopSVG />
                 </DropdownTrigger>
@@ -75,7 +77,8 @@ export default function Home() {
                         <span className="text-[20px]">About</span>
                     </DropdownItem>
                 </DropdownItems>
-            </Dropdown>
+            </Dropdown> */}
+            <DesktopPrimaryDropdown />
             <div className="absolute right-[25%] bottom-[92%]">
                 <PopupRemoteTrigger
                     className="editor-button"

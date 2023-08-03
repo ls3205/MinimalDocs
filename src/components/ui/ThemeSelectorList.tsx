@@ -27,7 +27,7 @@ export const ThemeSelectorList: React.FC = ({ ...props }) => {
                         key={key}
                     >
                         <span className="text-lg text-text">{key}</span>
-                        <span className={`theme-${key} mr-8 right-0 absolute`}>
+                        <span className={`theme-${key} mr-8 pr-2 right-0 absolute`}>
                             <div>
                                 <ul className="flex flex-row bg-bg rounded-lg">
                                     <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
