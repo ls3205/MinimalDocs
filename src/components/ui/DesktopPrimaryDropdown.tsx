@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
     DropdownMenu,
@@ -9,7 +9,10 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuSeparator,
-    DropdownMenuSub
+    DropdownMenuSub,
+    DropdownMenuSubTrigger,
+    DropdownMenuSubContent,
+    DropdownMenuCheckboxItem
 } from "@components/ui/DropdownMenu";
 
 import {
@@ -24,17 +27,26 @@ import {
     ThemeSelectorList
 } from "@minimaldocs/ui"
 
-import DialogItem from "./DialogItem";
-
 import { DesktopSVG } from ".";
-import { Info, Moon, Settings } from "lucide-react";
+import { Info, Moon, Save, Settings } from "lucide-react";
 import Link from "next/link";
-import { useTheme } from "../context";
+import { useSettings, useTheme } from "../context";
+
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+
+type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 interface DesktopPrimaryDropdownProps {}
 
 const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props}) => {
     const {theme, setTheme} = useTheme()
+    const {settings, setSettings} = useSettings()
+    console.log(settings)
+    const [autosave, setAutosave] = useState<Checked>(settings)
+
+    useEffect(() => {
+        setSettings(autosave as boolean);
+    }, [autosave])
 
     return (
         <Dialog>
@@ -45,7 +57,7 @@ const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props
                 <DropdownMenuContent className={`theme-${theme} bg-menu text-text border-text sm:hidden`}>
                     <DialogTrigger asChild>
                         <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
-                            <Moon />
+                            <Moon className="mr-2" />
                             <span className="mr-1 text-[20px]">
                                 Theme
                             </span>
@@ -61,14 +73,22 @@ const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props
                         </DropdownMenuItem>
                     </DialogTrigger>
                     <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
-                    <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
-                        <Settings />
-                        <span className="mr-1 text-[20px]">Settings</span>
-                    </DropdownMenuItem>
+                    <DropdownMenuSub >
+                        <DropdownMenuSubTrigger className="focus:bg-highlight focus:text-text data-[state=open]:bg-highlight m-2 mt-2 mb-2 p-2">
+                            <Settings className="mr-2" />
+                            <span className="mr-1 text-[20px]">Settings</span>
+                        </DropdownMenuSubTrigger>
+                        <DropdownMenuSubContent className="bg-menu text-text border-text">
+                            <DropdownMenuCheckboxItem className="focus:bg-highlight focus:text-text" checked={autosave} onCheckedChange={setAutosave}>
+                                <Save className="mr-2" />
+                                <span className="text-[20px]">Autosave</span>
+                            </DropdownMenuCheckboxItem>
+                        </DropdownMenuSubContent>
+                    </DropdownMenuSub>
                     <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
                     <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
-                        <Link className="flex flex-row align-middle" href="/about">
-                            <Info className="text-[20px] mr-2" />
+                        <Link className="flex flex-row align-middle w-full h-full" href="/about">
+                            <Info className="mr-2" />
                             <span className="relative text-[20px] top-[2px]">About</span>
                         </Link>
                     </DropdownMenuItem>

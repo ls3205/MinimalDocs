@@ -52,7 +52,7 @@ function CustomTextArea() {
         const handler = () => {
             setSaved({state: 'not saved'})
 
-            if (settings.autosave) {
+            if (settings === true) {
                 if (secondaryTimer) {
                     clearTimeout(secondaryTimer);
                 }

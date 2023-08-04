@@ -10,39 +10,37 @@ type SettingsObjectType = {
     "autosave": boolean
 }
 
+
 type SettingsContextType = {
-    settings: SettingsObjectType;
-    setSettings: React.Dispatch<React.SetStateAction<SettingsObjectType>>
+    settings: boolean;
+    setSettings: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const SettingsContext = createContext<SettingsContextType>({settings: {"autosave": true}, setSettings: (() => {}) as React.Dispatch<React.SetStateAction<SettingsObjectType>>});
+const SettingsContext = createContext<SettingsContextType>({settings: true, setSettings: (() => {}) as React.Dispatch<React.SetStateAction<boolean>>});
 
 export const useSettings = () => {
     return useContext(SettingsContext);
 }
 
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({children, ...props}) => {
-    const [settings, setSettings] = useState<SettingsObjectType>({"autosave": true});
+    const [settings, setSettings] = useState<boolean>(true);
 
     useEffect(() => {
         const savedSettings = window.localStorage.getItem('settings');
         if (savedSettings) {
-            setSettings(JSON.parse(savedSettings));
+            setSettings(Boolean(savedSettings));
         } else {
-            const defaultsJSON = {
-                "autosave": true
-            }
-            setSettings(defaultsJSON);
-            window.localStorage.setItem('settings', JSON.stringify(defaultsJSON));
+            setSettings(true);
         }
     }, [])
 
     useEffect(() => {
-        settings && window.localStorage.setItem('settings', JSON.stringify(settings))
+        settings && window.localStorage.setItem('settings', String(settings))
     }, [settings])
 
     return (
-        <SettingsContext.Provider value={{settings, setSettings}}>
+        // @ts-ignore
+        <SettingsContext.Provider value={{ settings, setSettings }}>
             {
                 children
             }
