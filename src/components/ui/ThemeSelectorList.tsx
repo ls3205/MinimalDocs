@@ -1,14 +1,20 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 
-import { Themes } from "@components/themes/themes";
+// import { Themes } from "@components/themes/themes";
 
 import { useTheme, useThemeRollback } from "@components/context/ThemeContext";
 
 export const ThemeSelectorList: React.FC = ({ ...props }) => {
     const { theme, setTheme } = useTheme();
     const { themeRollback, setThemeRollback } = useThemeRollback();
+
+    const [Themes, SetThemes] = useState<object>({});
+
+    fetch('http://localhost:3000/api/themes')
+        .then(res => res.json())
+        .then(data => SetThemes(data))
 
     return (
         <ul>
