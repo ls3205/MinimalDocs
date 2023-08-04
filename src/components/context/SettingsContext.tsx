@@ -26,16 +26,22 @@ export const SettingsProvider: React.FC<SettingsProviderProps> = ({children, ...
     const [settings, setSettings] = useState<boolean>(true);
 
     useEffect(() => {
-        const savedSettings = window.localStorage.getItem('settings');
-        if (savedSettings) {
-            setSettings(Boolean(savedSettings));
+        const savedSettings = window.localStorage.getItem("settings") === "true" ? true : false;
+        if (savedSettings !== undefined) {
+            console.log('e');
+            console.log(savedSettings);
+            setSettings(savedSettings);
+            console.log(settings);
         } else {
+            console.log('b');
             setSettings(true);
         }
     }, [])
 
     useEffect(() => {
-        settings && window.localStorage.setItem('settings', String(settings))
+        if ((settings !== undefined) && (settings !== (window.localStorage.getItem('settings') === "true" ? true : false))) {
+            window.localStorage.setItem("settings", String(settings));
+        }
     }, [settings])
 
     return (

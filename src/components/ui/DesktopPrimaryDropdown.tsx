@@ -42,11 +42,27 @@ const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props
     const {theme, setTheme} = useTheme()
     const {settings, setSettings} = useSettings()
     console.log(settings)
+    // const [autosave, setAutosave] = useState<Checked>(() => {
+    //     console.log(settings)
+    //     if (settings !== undefined) {
+    //         if (settings === true) {
+    //             return true
+    //         } else {
+    //             return false
+    //         }
+    //     }
+    // })
     const [autosave, setAutosave] = useState<Checked>(settings)
+    console.log(autosave)
 
     useEffect(() => {
-        setSettings(autosave as boolean);
+        // @ts-ignore
+        setSettings(autosave);
     }, [autosave])
+
+    useEffect(() => {
+        setAutosave(settings)
+    }, [settings])
 
     return (
         <Dialog>

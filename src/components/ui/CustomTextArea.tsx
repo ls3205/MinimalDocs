@@ -52,6 +52,8 @@ function CustomTextArea() {
         const handler = () => {
             setSaved({state: 'not saved'})
 
+            console.log(settings)
+
             if (settings === true) {
                 if (secondaryTimer) {
                     clearTimeout(secondaryTimer);

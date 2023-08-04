@@ -4,8 +4,7 @@ import {
     CustomTextArea,
     DesktopSVG,
     MobileSVG,
-    ThemeSelectorList,
-    SettingsMenu
+    ThemeSelectorList
 } from "@minimaldocs/ui";
 
 import {
@@ -205,7 +204,6 @@ export default function Home() {
                         <PopupExitButton />
                     </PopupHeader>
                     <DropdownDivider className='relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text' />
-                    <SettingsMenu />
                 </PopupContent>
             </Popup>
 
