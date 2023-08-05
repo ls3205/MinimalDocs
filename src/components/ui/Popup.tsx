@@ -2,40 +2,49 @@
 
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
-type PopupProps = {
-    children?: React.ReactNode;
-    id?: string;
-}
+// type PopupProps = {
+//     children?: React.ReactNode;
+//     id?: string;
+// }
 
-type PopupTriggerProps = {
-    children?: React.ReactNode;
-    id?: string;
-    bypassButton?: boolean;
-    display?: boolean;
-}
+// type PopupTriggerProps = {
+//     children?: React.ReactNode;
+//     id?: string;
+//     bypassButton?: boolean;
+//     display?: boolean;
+// }
 
-type PopupRemoteTriggerProps = {
-    children?: React.ReactNode;
-    id?: string;
-    className?: string;
-    triggerId?: string;
-    bypassButton?: boolean;
-}
+// type PopupRemoteTriggerProps = {
+//     children?: React.ReactNode;
+//     id?: string;
+//     className?: string;
+//     triggerId?: string;
+//     bypassButton?: boolean;
+// }
 
-type PopupContentProps = {
-    children?: React.ReactNode;
-    className?: string;
-}
+// type PopupContentProps = {
+//     children?: React.ReactNode;
+//     className?: string;
+// }
 
-type PopupHeaderProps = {
-    children?: React.ReactNode;
-    className?: string;
-}
+// type PopupHeaderProps = {
+//     children?: React.ReactNode;
+//     className?: string;
+// }
 
-type PopedContextType = {
-    poped: boolean;
-    setPoped: React.Dispatch<React.SetStateAction<boolean>> | undefined;
-}
+// type PopedContextType = {
+//     poped: boolean;
+//     setPoped: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+// }
+
+import {
+    PopupProps,
+    PopupTriggerProps,
+    PopupRemoteTriggerProps,
+    PopupContentProps,
+    PopupHeaderProps,
+    PopedContextType
+} from "@minimaldocs/types"
 
 const PopedContext = createContext<PopedContextType>({poped: false, setPoped: undefined});
 const ButtonRefContext = createContext<any>(undefined);

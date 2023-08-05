@@ -2,40 +2,15 @@
 
 import React, { useState, useEffect, createContext, useContext, useRef } from "react"
 
-type DropdownProps = {
-    children: React.ReactNode;
-    className?: string;
-}
-
-type DropdownTriggerProps = {
-    children: React.ReactNode;
-    className?: string;
-    bypassButton?: boolean;
-}
-
-type DropdownItemsProps = {
-    children: React.ReactNode;
-    className?: string;
-    anchor?: string;
-}
-
-type DropdownItemProps = {
-    children: React.ReactNode;
-    className?: string;
-}
-
-type DropdownDividerProps = {
-    className?: string;
-}
-
-type DropdownItemIconProps = {
-    icon: string;
-}
-
-type ExpandedContextType = {
-    expanded: boolean;
-    setExpanded: React.Dispatch<React.SetStateAction<boolean>> | undefined;
-}
+import {
+    DropdownProps,
+    DropdownTriggerProps,
+    DropdownItemsProps,
+    DropdownItemProps,
+    DropdownDividerProps,
+    DropdownItemIconProps,
+    ExpandedContextType
+} from "@minimaldocs/types"
 
 const ExpandedContext = createContext<ExpandedContextType>({expanded: false, setExpanded: undefined});
 const ButtonRefContext = createContext<any>(undefined);

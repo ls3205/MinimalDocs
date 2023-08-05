@@ -25,7 +25,14 @@
       "@components/*": ["./src/components/*"],
       "@components/ui": ["./src/components/ui"],
       // "@scripts/*": ["./src/scripts/*"],
-      "@scripts": ["./src/scripts"]
+      "@scripts": ["./src/scripts"],
+
+      "@minimaldocs/ui": ["./src/components/ui"],
+      "@minimaldocs/scripts": ["./src/scripts"],
+      "@minimaldocs/lib": ["./src/lib/utils.ts"],
+      "@minimaldocs/context": ["./src/components/context"],
+      "@minimaldocs/themes": ["./themes"],
+      "@minimaldocs/types": ["./src/types"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

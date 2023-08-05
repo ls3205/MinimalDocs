@@ -1,4 +1,4 @@
-export const Themes = {
+{
     "flashbang": {
         "--bg": "#fff",
         "--text": "#000",
@@ -33,5 +33,19 @@ export const Themes = {
         "--subtext": "#99947f",
         "--highlight": "#080909",
         "--menu": "#d3cfc1"
+    },
+    "bingsu": {
+        "--bg": "#b8a7aa",
+        "--text": "#ebe6ea",
+        "--subtext": "#48373d",
+        "--highlight": "#83616e",
+        "--menu": "#ab989e"
+    },
+    "dark": {
+        "--bg": "#111",
+        "--text": "#eee",
+        "--subtext": "#444",
+        "--highlight": "#eee",
+        "--menu": "#191919"
     }
 }
