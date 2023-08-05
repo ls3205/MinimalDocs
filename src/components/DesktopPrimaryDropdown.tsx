@@ -26,10 +26,10 @@ import {
     ThemeSelectorList
 } from "@minimaldocs/ui"
 
-import { DesktopSVG } from ".";
+import { DesktopSVG } from "./ui";
 import { Info, Moon, Save, Settings } from "lucide-react";
 import Link from "next/link";
-import { useSettings, useTheme } from "../context";
+import { useSettings, useTheme } from "./context";
 
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 

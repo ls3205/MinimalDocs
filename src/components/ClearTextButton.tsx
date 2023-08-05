@@ -14,7 +14,7 @@ import {
     cn
 } from "@minimaldocs/lib"
 
-import { useSettings } from "../context";
+import { useSettings } from "./context";
 
 export const ClearTextButton: React.FC<ClientButtonType> = ({className, iconClass, ...props}) => {
     const {settings, setSettings} = useSettings();

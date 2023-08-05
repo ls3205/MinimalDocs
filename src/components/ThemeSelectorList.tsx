@@ -8,7 +8,7 @@ import { useTheme, useThemeRollback } from "@components/context/ThemeContext";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Skeleton } from "./Skeleton";
+import { Skeleton } from "./ui/Skeleton";
 
 export const ThemeSelectorList: React.FC = ({ ...props }) => {
     const { theme, setTheme } = useTheme();

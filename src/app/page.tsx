@@ -33,7 +33,7 @@ import {
     PopupExitButton
 } from "@minimaldocs/ui"
 
-import DesktopPrimaryDropdown from "@/components/ui/DesktopPrimaryDropdown";
+import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
 
 export default function Home() {
 
