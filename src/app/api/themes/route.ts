@@ -1,8 +1,6 @@
-import { NextRequest } from "next/server";
-
 const fs = require('fs')
 
-export async function GET(req: NextRequest) {
+export async function GET(req: Request) {
     try {
         const { searchParams } = new URL(req.url)
         const theme = searchParams.get('theme')
