@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
     return (
         <footer className="hidden absolute border-t-[1px] border-highlight bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
             <ul className="flex flex-row w-full h-full">
-                <li className="w-[20%]">
+                <li className="w-[20%] group">
                     <MobilePrimaryDropdown />
                 </li>
                 <li className="w-[20%] align-middle justify-center">
