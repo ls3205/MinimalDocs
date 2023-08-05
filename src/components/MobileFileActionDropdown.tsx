@@ -29,7 +29,7 @@ const MobileFileActionDropdown: React.FC<
             <DropdownMenuContent className={`theme-${theme} ml-2 mb-2 bg-menu border-text text-text hidden sm:block`}>
                 <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                     <FileUploadButton
-                        className="w-full"
+                        className="w-full h-full"
                         iconClass="mr-1 text-[20px] top-[5px] relative"
                         title="Upload"
                     />
@@ -37,7 +37,7 @@ const MobileFileActionDropdown: React.FC<
                 <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
                 <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                     <FileDownloadButton
-                        className="w-full"
+                        className="w-full h-full"
                         iconClass="mr-1 text-[20px] top-[5px] relative"
                         title="Download"
                     />
@@ -45,7 +45,7 @@ const MobileFileActionDropdown: React.FC<
                 <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
                 <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                     <CacheTextButton
-                        className="w-full"
+                        className="w-full h-full"
                         iconClass="mr-1 text-[20px] top-[5px] relative"
                         title="Save"
                     />
