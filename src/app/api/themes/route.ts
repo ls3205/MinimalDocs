@@ -1,8 +1,6 @@
-import { NextApiRequest } from "next";
-
 const fs = require('fs')
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
     try {
         //@ts-ignore
         const theme = req.nextUrl.searchParams.get(['theme'])
