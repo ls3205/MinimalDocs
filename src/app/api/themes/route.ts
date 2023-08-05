@@ -7,7 +7,7 @@ export async function GET(req: NextApiRequest) {
         //@ts-ignore
         const theme = req.nextUrl.searchParams.get(['theme'])
 
-        const themes = JSON.parse(fs.readFileSync('./src/components/themes/themes.json'));
+        const themes = JSON.parse(fs.readFileSync('./src/themes/themes.json'));
         var res;
         if (theme) {
             res = themes[theme];

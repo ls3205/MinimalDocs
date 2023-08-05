@@ -3,7 +3,7 @@ import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "../components/themes/themes.css"
+import "../themes/themes.css"
 
 import Providers from "@/components/Providers";
 

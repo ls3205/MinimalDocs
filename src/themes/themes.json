@@ -40,5 +40,12 @@
         "--subtext": "#48373d",
         "--highlight": "#83616e",
         "--menu": "#ab989e"
+    },
+    "dark": {
+        "--bg": "#111",
+        "--text": "#eee",
+        "--subtext": "#444",
+        "--highlight": "#eee",
+        "--menu": "#191919"
     }
 }

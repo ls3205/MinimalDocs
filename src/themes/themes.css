@@ -46,3 +46,11 @@
     --menu: #ab989e;
 }
 
+.theme-dark {
+    --bg: #111;
+    --text: #eee;
+    --subtext: #444;
+    --highlight: #eee;
+    --menu: #191919;
+}
+

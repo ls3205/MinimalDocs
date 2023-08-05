@@ -31,7 +31,7 @@
       "@minimaldocs/scripts": ["./src/scripts"],
       "@minimaldocs/lib": ["./src/lib/utils.ts"],
       "@minimaldocs/context": ["./src/components/context"],
-      "@minimaldocs/themes": ["./src/components/themes"],
+      "@minimaldocs/themes": ["./themes"],
       "@minimaldocs/types": ["./src/types"],
     }
   },

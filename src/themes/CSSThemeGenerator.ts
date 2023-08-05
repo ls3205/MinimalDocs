@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const Themes = JSON.parse(fs.readFileSync('./src/components/themes/themes.json'));
+const Themes = JSON.parse(fs.readFileSync('./src/themes/themes.json'));
 
 const generator = (name: string, themeJSON: any): string => {
     var tempCSSString = `.theme-${name} {`;
@@ -17,7 +17,7 @@ const generate = (): void => {
         cssString += generator(key, value);
         
     })
-    fs.writeFile(`./src/components/themes/themes.css`, cssString, (err: any) => {
+    fs.writeFile(`./src/themes/themes.css`, cssString, (err: any) => {
         if (err)
             console.log(err);
         else {
