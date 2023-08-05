@@ -7,20 +7,22 @@ const generator = (name: string, themeJSON: any): string => {
     Object.entries(themeJSON).map(([key, value]) => {
         tempCSSString += `\n    ${key}: ${value};`;
     })
-    tempCSSString += '\n}';
+    tempCSSString += '\n}\n\n';
     return tempCSSString;
 }
 
 const generate = (): void => {
+    var cssString: string = '';
     Object.entries(Themes).map(([key, value]) => {
-        const cssString = generator(key, value);
-        fs.writeFile(`./src/components/themes/${key}.css`, cssString, (err: any) => {
-            if (err)
-                console.log(err);
-            else {
-                console.log("File written successfully\n");
-            }
-        })
+        cssString += generator(key, value);
+        
+    })
+    fs.writeFile(`./src/components/themes/themes.css`, cssString, (err: any) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log("File written successfully\n");
+        }
     })
 }
 

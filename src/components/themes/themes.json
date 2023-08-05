@@ -33,5 +33,12 @@
         "--subtext": "#99947f",
         "--highlight": "#080909",
         "--menu": "#d3cfc1"
+    },
+    "bingsu": {
+        "--bg": "#b8a7aa",
+        "--text": "#ebe6ea",
+        "--subtext": "#48373d",
+        "--highlight": "#83616e",
+        "--menu": "#ab989e"
     }
 }

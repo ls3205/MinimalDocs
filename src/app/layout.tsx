@@ -3,11 +3,7 @@ import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "../components/themes/carbon.css"
-import "../components/themes/flashbang.css"
-import "../components/themes/fledgling.css"
-import "../components/themes/mashu.css"
-import "../components/themes/9009.css"
+import "../components/themes/themes.css"
 
 import Providers from "@/components/Providers";
 
