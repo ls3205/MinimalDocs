@@ -1,20 +1,23 @@
+import { NextRequest, NextResponse } from "next/server";
+
 const fs = require('fs')
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
     try {
-        // const { searchParams } = new URL(req.url)
-        // const theme = searchParams.get('theme')
-
+        const theme = new URL(req.url).searchParams.get("theme")
         const themes = JSON.parse(fs.readFileSync('./src/themes/themes.json'));
-        // var res;
-        // if (theme) {
-        //     res = themes[theme];
-        // } else {
-        //     res = themes
-        // }
-        var res=themes
-        return new Response(JSON.stringify(res))
+        var res;
+        if (theme) {
+            res = themes[theme]
+        } else {
+            res = themes
+        }
+
+        return NextResponse.json(res, {status: 200})
     } catch (err) {
-        console.error(err)
+        if (err instanceof TypeError) {
+            return NextResponse.json({error: `Theme does not exist`}, {status: 400})
+        }
+        return NextResponse.json({error: `An Error Occured Fetching Themes: ${err}`}, {status: 500})
     }
 }
