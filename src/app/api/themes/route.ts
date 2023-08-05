@@ -1,9 +1,11 @@
+import { NextRequest } from "next/server";
+
 const fs = require('fs')
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
     try {
-        //@ts-ignore
-        const theme = req.nextUrl.searchParams.get(['theme'])
+        const { searchParams } = new URL(req.url)
+        const theme = searchParams.get('theme')
 
         const themes = JSON.parse(fs.readFileSync('./src/themes/themes.json'));
         var res;
