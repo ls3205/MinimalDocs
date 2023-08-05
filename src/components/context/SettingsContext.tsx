@@ -6,46 +6,35 @@ type SettingsProviderProps = {
     children?: React.ReactNode
 }
 
-type SettingsObjectType = {
-    "autosave": boolean
-}
-
-
 type SettingsContextType = {
-    settings: boolean;
-    setSettings: React.Dispatch<React.SetStateAction<boolean>>
+    settings: string;
+    setSettings: React.Dispatch<React.SetStateAction<string>>
 }
 
-const SettingsContext = createContext<SettingsContextType>({settings: true, setSettings: (() => {}) as React.Dispatch<React.SetStateAction<boolean>>});
+const SettingsContext = createContext<SettingsContextType>({settings: '', setSettings: (() => {}) as React.Dispatch<React.SetStateAction<string>>});
 
 export const useSettings = () => {
     return useContext(SettingsContext);
 }
 
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({children, ...props}) => {
-    const [settings, setSettings] = useState<boolean>(true);
+    const [settings, setSettings] = useState<string>('');
 
     useEffect(() => {
-        const savedSettings = window.localStorage.getItem("settings") === "true" ? true : false;
-        if (savedSettings !== undefined) {
-            console.log('e');
-            console.log(savedSettings);
-            setSettings(savedSettings);
-            console.log(settings);
+        const storedSettings = window.localStorage.getItem("settings");
+        if (storedSettings !== null) {
+            setSettings(storedSettings);
         } else {
-            console.log('b');
-            setSettings(true);
+            window.localStorage.setItem('settings', 'true')
+            setSettings("true");
         }
     }, [])
 
     useEffect(() => {
-        if ((settings !== undefined) && (settings !== (window.localStorage.getItem('settings') === "true" ? true : false))) {
-            window.localStorage.setItem("settings", String(settings));
-        }
+        settings && window.localStorage.setItem('settings', settings)
     }, [settings])
 
     return (
-        // @ts-ignore
         <SettingsContext.Provider value={{ settings, setSettings }}>
             {
                 children

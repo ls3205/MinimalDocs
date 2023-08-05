@@ -51,10 +51,8 @@ function CustomTextArea() {
     useEffect(() => {
         const handler = () => {
             setSaved({state: 'not saved'})
-
-            console.log(settings)
-
-            if (settings === true) {
+            
+            if (window.localStorage.getItem('settings') === "true") {
                 if (secondaryTimer) {
                     clearTimeout(secondaryTimer);
                 }

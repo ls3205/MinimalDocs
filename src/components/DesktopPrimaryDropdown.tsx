@@ -40,27 +40,18 @@ interface DesktopPrimaryDropdownProps {}
 const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props}) => {
     const {theme, setTheme} = useTheme()
     const {settings, setSettings} = useSettings()
-    console.log(settings)
-    // const [autosave, setAutosave] = useState<Checked>(() => {
-    //     console.log(settings)
-    //     if (settings !== undefined) {
-    //         if (settings === true) {
-    //             return true
-    //         } else {
-    //             return false
-    //         }
-    //     }
-    // })
-    const [autosave, setAutosave] = useState<Checked>(settings)
-    console.log(autosave)
+    const [checked, setChecked] = useState<Checked>(Boolean(settings))
 
     useEffect(() => {
-        // @ts-ignore
-        setSettings(autosave);
-    }, [autosave])
+        setSettings(String(checked));
+    }, [checked])
 
     useEffect(() => {
-        setAutosave(settings)
+        if (settings === 'true') {
+            setChecked(true)
+        } else {
+            setChecked(false)
+        }
     }, [settings])
 
     return (
@@ -94,7 +85,7 @@ const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props
                             <span className="mr-1 text-[20px]">Settings</span>
                         </DropdownMenuSubTrigger>
                         <DropdownMenuSubContent className="bg-menu text-text border-text">
-                            <DropdownMenuCheckboxItem className="focus:bg-highlight focus:text-text" checked={autosave} onCheckedChange={setAutosave}>
+                            <DropdownMenuCheckboxItem className="focus:bg-highlight focus:text-text" checked={checked} onCheckedChange={setChecked}>
                                 <Save className="mr-2" />
                                 <span className="text-[20px]">Autosave</span>
                             </DropdownMenuCheckboxItem>

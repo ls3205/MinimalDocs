@@ -14,21 +14,18 @@ import {
     cn
 } from "@minimaldocs/lib"
 
-import { useSettings } from "./context";
 import { Delete } from "lucide-react";
+import { useSaved } from "./context";
 
 export const ClearTextButton: React.FC<ClientButtonType> = ({className, iconClass, ...props}) => {
-    const {settings, setSettings} = useSettings();
+    const {saved, setSaved} = useSaved()
 
     return (
         <button
             className={className}
             onClick={() => {
                 clearText();
-                console.log(settings);
-                if (settings === true) {
-                    saveCacheData();
-                }
+                setSaved({state: "not saved"})
             }}
         >
             <Delete className={cn('w-full', iconClass)} />

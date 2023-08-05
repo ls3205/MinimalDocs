@@ -33,17 +33,19 @@ type Checked = DropdownMenuCheckboxItemProps["checked"]
 const MobilePrimaryDropdown: React.FC<MobilePrimaryDropdownProps> = ({}) => {
     const { theme, setTheme } = useTheme();
     const { settings, setSettings } = useSettings();
-    const [autosave, setAutosave] = useState<Checked>(settings);
-    console.log(autosave);
+    const [autosave, setAutosave] = useState<Checked>(Boolean(settings))
 
     useEffect(() => {
-        // @ts-ignore
-        setSettings(autosave);
-    }, [autosave]);
+        setSettings(String(autosave));
+    }, [autosave])
 
     useEffect(() => {
-        setAutosave(settings);
-    }, [settings]);
+        if (settings === 'true') {
+            setAutosave(true)
+        } else {
+            setAutosave(false)
+        }
+    }, [settings])
 
     return (
         <Dialog>
