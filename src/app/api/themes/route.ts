@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import path from "path";
 
 const fs = require('fs')
 
 export async function GET(req: NextRequest) {
     try {
         const theme = new URL(req.url).searchParams.get("theme")
-        const themes = JSON.parse(fs.readFileSync('./src/themes/themes.json'));
+        const dir = path.resolve('./src/themes', 'themes.json')
+        const themes = JSON.parse(fs.readFileSync(dir));
         var res;
         if (theme) {
             res = themes[theme]
