@@ -1,10 +1,5 @@
-import React from "react";
-
 import {
-    CustomTextArea,
-    DesktopSVG,
-    MobileSVG,
-    ThemeSelectorList,
+    CustomTextArea
 } from "@minimaldocs/ui";
 
 import {
@@ -15,26 +10,9 @@ import {
     CacheTextButton,
 } from "@minimaldocs/ui";
 
-import {
-    Dropdown,
-    DropdownTrigger,
-    DropdownItems,
-    DropdownItem,
-    DropdownItemIcon,
-    DropdownDivider,
-} from "@minimaldocs/ui";
-
-import {
-    Popup,
-    PopupTrigger,
-    PopupRemoteTrigger,
-    PopupContent,
-    PopupHeader,
-    PopupExitButton,
-} from "@minimaldocs/ui";
-
 import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
 import WordCountPopup from "@/components/WordCountPopup";
+import Footer from "@/components/Footer";
 
 export default function Home() {
     return (
@@ -63,174 +41,8 @@ export default function Home() {
                 <CopyTextButton className="editor-button" />
                 <ClearTextButton className="editor-button" />
             </div>
-            <footer className="hidden absolute border-t-[1px] border-highlight bottom-0 w-full h-[8vh] bg-menu sm:inline-block">
-                <ul className="flex flex-row w-full h-full">
-                    <li className="w-[20%]">
-                        <Dropdown className="w-full h-full align-middle justify-center group hover:bg-text transition-all duration-300">
-                            <DropdownTrigger bypassButton={true}>
-                                <MobileSVG />
-                            </DropdownTrigger>
-                            <DropdownItems
-                                anchor="bottom-mobile"
-                                className="bg-menu border-[1px] rounded-lg"
-                            >
-                                <DropdownItem className="m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <PopupRemoteTrigger
-                                        id="theme-popup-remote"
-                                        triggerId="theme-popup"
-                                    >
-                                        <DropdownItemIcon icon="dark_mode" />
-                                        <span className="mr-1 text-[20px]">
-                                            Theme
-                                        </span>
-                                        <span className="mr-1">
-                                            <div>
-                                                <ul className="flex flex-row bg-bg rounded-lg">
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-text"></li>
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-subtext"></li>
-                                                    <li className="relative rounded-lg w-[20px] h-[20px] m-1 bg-menu"></li>
-                                                </ul>
-                                            </div>
-                                        </span>
-                                    </PopupRemoteTrigger>
-                                </DropdownItem>
-                                <DropdownDivider className="!bg-text relative w-[90%] left-[5%]" />
-                                <DropdownItem className="m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <PopupRemoteTrigger
-                                        id="settings-popup-remote"
-                                        triggerId="settings-popup"
-                                    >
-                                        <DropdownItemIcon icon="settings" />
-                                        <span className="mr-1 text-[20px]">
-                                            Settings
-                                        </span>
-                                    </PopupRemoteTrigger>
-                                </DropdownItem>
-                                <DropdownDivider className="!bg-text relative w-[90%] left-[5%]" />
-                                <DropdownItem className="m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <DropdownItemIcon icon="info" />
-                                    <span className="text-[20px]">About</span>
-                                </DropdownItem>
-                            </DropdownItems>
-                        </Dropdown>
-                    </li>
-                    <li className="w-[20%]">
-                        <Dropdown className="w-full h-full align-middle justify-center group hover:bg-text transition-all duration-300">
-                            <DropdownTrigger className="footer-button">
-                                <span className="relative material-icons-outlined text-[4vh]">
-                                    save
-                                </span>
-                            </DropdownTrigger>
-                            <DropdownItems
-                                anchor="bottom-mobile"
-                                className="bg-menu border-[1px] rounded-lg"
-                            >
-                                <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <FileUploadButton
-                                        className="w-full"
-                                        iconClass="mr-1 text-[20px] top-[5px] relative"
-                                        title="Upload"
-                                    />
-                                </DropdownItem>
-                                <DropdownDivider className="!bg-text relative w-[90%] left-[5%]" />
-                                <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <FileDownloadButton
-                                        className="w-full"
-                                        iconClass="mr-1 text-[20px] top-[5px] relative"
-                                        title="Download"
-                                    />
-                                </DropdownItem>
-                                <DropdownDivider className="!bg-text relative w-[90%] left-[5%]" />
-                                <DropdownItem className="flex flex-row cursor-pointer m-2 mt-2 mb-2 p-2 rounded-lg hover:bg-highlight transition-all duration-300">
-                                    <CacheTextButton
-                                        className="w-full"
-                                        iconClass="mr-1 text-[20px] top-[5px] relative"
-                                        title="Save"
-                                    />
-                                </DropdownItem>
-                            </DropdownItems>
-                        </Dropdown>
-                    </li>
-                    <li className="w-[20%] align-middle justify-center">
-                        <WordCountPopup>
-                            <button className="footer-button">
-                                <span className="material-icons-outlined text-[4vh]">
-                                    subject
-                                </span>
-                            </button>
-                        </WordCountPopup>
-                    </li>
-                    <li className="w-[20%] align-middle justify-center">
-                        <CopyTextButton
-                            className="footer-button"
-                            iconClass="text-[4vh]"
-                        />
-                    </li>
-                    <li className="w-[20%] align-middle justify-center">
-                        <ClearTextButton
-                            className="footer-button"
-                            iconClass="text-[4vh]"
-                        />
-                    </li>
-                </ul>
-            </footer>
 
-            <Popup id="theme-popup">
-                <PopupTrigger display={false} id="theme-popup" />
-                <PopupContent
-                    className={` w-[50%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}
-                >
-                    <PopupHeader>
-                        <h1 className="mr-4 text-[35px] text-text">
-                            Select Theme
-                        </h1>
-                        <PopupExitButton className="!absolute !right-0" />
-                    </PopupHeader>
-                    <DropdownDivider className="relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text" />
-                    <ThemeSelectorList />
-                </PopupContent>
-            </Popup>
-
-            <Popup id="settings-popup">
-                <PopupTrigger display={false} id="settings-popup" />
-                <PopupContent
-                    className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}
-                >
-                    <PopupHeader>
-                        <h1 className="mr-4 text-[35px] text-text">Settings</h1>
-                        <PopupExitButton />
-                    </PopupHeader>
-                    <DropdownDivider className="relative w-[95%] left-[2.5%] mt-2 mb-2 bg-text" />
-                </PopupContent>
-            </Popup>
-
-            <Popup id="doc-info">
-                <PopupTrigger display={false} id="doc-info" />
-                <PopupContent
-                    className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}
-                >
-                    <PopupHeader>
-                        <h1 className="mr-4 text-[35px] text-text">
-                            under construction... 🚧👷‍♂️
-                        </h1>
-                        <PopupExitButton />
-                    </PopupHeader>
-                </PopupContent>
-            </Popup>
-
-            <Popup id="doc-info-mobile">
-                <PopupTrigger display={false} id="doc-info-mobile" />
-                <PopupContent
-                    className={` w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text`}
-                >
-                    <PopupHeader>
-                        <h1 className="mr-4 text-[35px] text-text">
-                            under construction... 🚧👷‍♂️
-                        </h1>
-                        <PopupExitButton />
-                    </PopupHeader>
-                </PopupContent>
-            </Popup>
+            <Footer />
         </div>
     );
 }

@@ -15,6 +15,7 @@ import {
 } from "@minimaldocs/lib"
 
 import { useSettings } from "./context";
+import { Delete } from "lucide-react";
 
 export const ClearTextButton: React.FC<ClientButtonType> = ({className, iconClass, ...props}) => {
     const {settings, setSettings} = useSettings();
@@ -30,9 +31,7 @@ export const ClearTextButton: React.FC<ClientButtonType> = ({className, iconClas
                 }
             }}
         >
-            <span className={cn("material-icons-outlined", iconClass)}>
-                backspace
-            </span>
+            <Delete className={cn('w-full', iconClass)} />
         </button>
     )
 }

@@ -13,13 +13,12 @@ import {
 import {
     cn
 } from "@minimaldocs/lib"
+import { Copy } from "lucide-react"
 
 export const CopyTextButton: React.FC<ClientButtonType> = ({className, iconClass, ...props}) => {
     return (
         <button className={className} onClick={copyText}>
-            <span className={cn("material-icons-outlined", iconClass)}>
-                content_copy
-            </span>
+            <Copy className={cn('w-full', iconClass)} />
         </button>
     )
 }
