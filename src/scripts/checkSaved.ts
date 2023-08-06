@@ -1,6 +1,5 @@
-import { checkSaved } from "./checkSaved"
-
-export const saveCacheData = () => {
+export const checkSaved = () => {
+    const cachedData = JSON.parse(window.localStorage.getItem('savedtext')!);
 
     const titlefield: HTMLTextAreaElement = document.getElementById('titlefield') as HTMLTextAreaElement
     const textfield: HTMLTextAreaElement = document.getElementById('textfield') as HTMLTextAreaElement
@@ -8,12 +7,7 @@ export const saveCacheData = () => {
     const title: string = titlefield.value
     const text: string = textfield.value
 
-    const jsonData = {
-        "title": title,
-        "text": text
+    if ((cachedData.title !== title) || (cachedData.text !== text)) {
+        throw new Error("Failed to Save")
     }
-
-    window.localStorage.setItem('savedtext', JSON.stringify(jsonData))
-
-    checkSaved()
 }

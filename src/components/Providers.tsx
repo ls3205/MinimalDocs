@@ -9,6 +9,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 import React from "react";
+import { Toaster } from "./ui/Toaster";
 
 interface ProvidersProps {
     children?: React.ReactNode;
@@ -19,7 +20,10 @@ const Providers: React.FC<ProvidersProps> = ({ children }) => {
         <QueryClientProvider client={queryClient}>
             <SettingsProvider>
                 <ThemeProvider>
-                    <SavedProvider>{children}</SavedProvider>
+                    <SavedProvider>
+                        {children}
+                        <Toaster />
+                    </SavedProvider>
                 </ThemeProvider>
             </SettingsProvider>
         </QueryClientProvider>
