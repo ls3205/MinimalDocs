@@ -22,31 +22,32 @@ export const CacheTextButton: React.FC<ClientButtonType> = ({
     const { toast } = useToast();
 
     return (
-        <button className={className}>
-            <span
-                className={cn("material-icons-outlined", iconClass)}
-                onClick={() => {
-                    try {
-                        saveCacheData();
-                    } catch (error) {
-                        toast({
-                            title: "An Error Occurred!",
-                            description: "Failed to cache text data, please try again.",
-                            variant: "destructive",
-                            duration: 2000
-                        })
-                        return
-                    }
+        <button
+            className={className}
+            onClick={() => {
+                try {
+                    saveCacheData();
+                } catch (error) {
                     toast({
-                        title: "Saved Data!",
-                        description: "Successfully locally cached text data.",
-                        variant: "default",
+                        title: "An Error Occurred!",
+                        description:
+                            "Failed to cache text data, please try again.",
+                        variant: "destructive",
                         duration: 2000,
-                        className: "bg-green-500 border-text"
-                    })
-                    setSaved({ state: "saved" });
-                }}
-            >
+                    });
+                    return;
+                }
+                toast({
+                    title: "Saved Data!",
+                    description: "Successfully locally cached text data.",
+                    variant: "default",
+                    duration: 2000,
+                    className: "bg-green-500 border-text",
+                });
+                setSaved({ state: "saved" });
+            }}
+        >
+            <span className={cn("material-icons-outlined", iconClass)}>
                 save
             </span>
             {title && <span className="text-[20px]">{title}</span>}
