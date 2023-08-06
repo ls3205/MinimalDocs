@@ -33,13 +33,19 @@ export const CopyTextButton: React.FC<ClientButtonType> = ({
 
                     return
                 }
-                toast({
+                copiedData == '' ? (
+                    toast({
+                        title: "Nothing to Copy!",
+                        variant: "destructive",
+                        duration: 2000,
+                    })
+                ) : (toast({
                     title: "Copied to Clipboard",
                     description: copiedData,
                     variant: "default",
                     duration: 2000,
                     className: "bg-menu text-text border-text",
-                });
+                }));
             }}
         >
             <Copy className={cn("w-full", iconClass)} />
