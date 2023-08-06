@@ -19,5 +19,9 @@ export const downloadFile = () => {
         document.body.appendChild(downloadableLink);
         downloadableLink.click();
         document.body.removeChild(downloadableLink);
+
+        return {
+            documentName: name,
+        }
     }
 };

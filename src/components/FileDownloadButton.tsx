@@ -7,6 +7,7 @@ import { downloadFile } from "@scripts";
 import { ClientButtonType } from "@minimaldocs/types";
 
 import { cn } from "@minimaldocs/lib";
+import { useToast } from "./ui/use-toast";
 
 export const FileDownloadButton: React.FC<ClientButtonType> = ({
     className,
@@ -14,8 +15,33 @@ export const FileDownloadButton: React.FC<ClientButtonType> = ({
     title,
     ...props
 }) => {
+    const { toast } = useToast()
+
     return (
-        <button className={className} onClick={downloadFile}>
+        <button
+            className={className}
+            onClick={() => {
+                try {
+                    var downloaded = downloadFile();
+                } catch (err) {
+                    toast({
+                        title: "An Error Occurred!",
+                        description:
+                            "Failed to download file, please try again.",
+                        variant: "destructive",
+                        duration: 2000,
+                    });
+                    return
+                }
+                toast({
+                    title: "Downloaded Text!",
+                    description: `Successfully downloaded ${downloaded?.documentName}`,
+                    variant: "default",
+                    duration: 2000,
+                    className: "bg-green-500 border-text",
+                });
+            }}
+        >
             <span className={cn("material-icons-outlined", iconClass)}>
                 {" "}
                 file_download{" "}

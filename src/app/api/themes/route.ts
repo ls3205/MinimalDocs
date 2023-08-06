@@ -20,6 +20,6 @@ export async function GET(req: NextRequest) {
         if (err instanceof TypeError) {
             return NextResponse.json({error: `Theme does not exist`}, {status: 400})
         }
-        return NextResponse.json({error: `An Error Occured Fetching Themes: ${err}`}, {status: 500})
+        return NextResponse.json({error: `An Error Occurred Fetching Themes: ${err}`}, {status: 500})
     }
 }
