@@ -33,13 +33,19 @@ export const FileDownloadButton: React.FC<ClientButtonType> = ({
                     });
                     return
                 }
-                downloaded && toast({
+                downloaded ? (toast({
                     title: "Downloaded Text!",
                     description: `Successfully downloaded ${downloaded?.documentName}`,
                     variant: "default",
                     duration: 2000,
                     className: "bg-green-500 border-text",
-                });
+                })) : (
+                    toast({
+                        title: "Can't Download Empty File!",
+                        variant: "destructive",
+                        duration: 2000,
+                    })
+                )
             }}
         >
             <span className={cn("material-icons-outlined", iconClass)}>
