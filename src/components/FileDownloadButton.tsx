@@ -33,7 +33,7 @@ export const FileDownloadButton: React.FC<ClientButtonType> = ({
                     });
                     return
                 }
-                toast({
+                downloaded && toast({
                     title: "Downloaded Text!",
                     description: `Successfully downloaded ${downloaded?.documentName}`,
                     variant: "default",
