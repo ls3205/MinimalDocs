@@ -12,6 +12,10 @@
   .footer-button {
     @apply hidden sm:block cursor-pointer w-full h-full transition-all duration-300 border-highlight hover:bg-text hover:text-highlight hover:border-highlight 
   }
+
+  .link {
+    @apply text-subtext hover:text-text active:text-highlight transition-all duration-300 active:transition-none
+  }
 }
 
 body {
