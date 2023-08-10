@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import GoogleSVG from "./GoogleSVG";
 import { signIn } from 'next-auth/react'
 import { useToast } from "./ui/use-toast";
+import Spinner from "./Spinner";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -31,9 +32,9 @@ const UserAuthForm: React.FC<UserAuthFormProps> = ({ className, ...props }) => {
 
     return (
         <div className={cn("flex justify-center", className)} {...props}>
-            <button className="flex flex-row" onClick={loginWithGoogle}>
-                {isLoading ? null : <GoogleSVG />}
-                Google
+            <button className="flex flex-row w-full h-full m-4 p-3 justify-center bg-black rounded-md hover:rounded-xl transition-all duration-300" onClick={loginWithGoogle}>
+                {isLoading ? <Spinner width="w-6" height="h-6" /> : <GoogleSVG />}
+                <p className="text-white ml-4">Google</p>
             </button>
         </div>
     );

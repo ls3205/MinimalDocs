@@ -13,6 +13,7 @@ import {
 import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
 import WordCountPopup from "@/components/WordCountPopup";
 import Footer from "@/components/Footer";
+import DesktopAccountDropdown from "@/components/DesktopAccountDropdown";
 
 export default function Home() {
     return (
@@ -31,6 +32,7 @@ export default function Home() {
                     </button>
                 </WordCountPopup>
             </div>
+            <DesktopAccountDropdown />
             <CustomTextArea />
             <div className="absolute top-[92%] left-[25%]">
                 <FileUploadButton className="editor-button" />

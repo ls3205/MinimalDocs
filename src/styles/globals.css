@@ -16,6 +16,14 @@
   .link {
     @apply text-subtext hover:text-text active:text-highlight transition-all duration-300 active:transition-none
   }
+
+  .dropdown-item {
+    @apply focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2
+  }
+
+  .dropdown-separator {
+    @apply relative fill-text w-[90%] left-[5%]
+  }
 }
 
 body {
