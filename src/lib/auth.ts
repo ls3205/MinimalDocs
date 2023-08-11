@@ -2,6 +2,7 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import { db } from "./db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GoogleProvider from "next-auth/providers/google"
+import DiscordProvider from "next-auth/providers/discord"
 import { nanoid } from "nanoid"
 
 export const authOptions: NextAuthOptions = {
@@ -16,6 +17,10 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+        }),
+        DiscordProvider({
+            clientId: process.env.DISCORD_CLIENT_ID!,
+            clientSecret: process.env.DISCORD_CLIENT_SECRET!
         })
     ],
     callbacks: {
