@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "concurrently \"next build\" \"prisma generate\"",
+    "build": "next build",
+    "vercel-build": "next build && prisma generate",
     "start": "next start",
     "lint": "next lint"
   },
