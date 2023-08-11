@@ -9,6 +9,7 @@ import {
     DialogTrigger,
 } from "./ui/Dialog";
 import { useTheme } from "./context";
+import WordCountContent from "./WordCountContent";
 
 interface WordCountPopupProps {
     children: React.ReactNode;
@@ -20,14 +21,15 @@ const WordCountPopup: React.FC<WordCountPopupProps> = ({ children }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className={`theme-${theme} w-[30%] max-w-[50%] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text text-text text-2xl`} >
+            <DialogContent className={`theme-${theme} w-[500px] max-h-[80%] sm:w-[90%] sm:max-w-full rounded-xl bg-menu border-2 border-text text-text text-2xl`} >
                 <DialogHeader>
                     <DialogTitle>
                         <h1 className="mr-4 text-[35px] text-text">
-                            under construction... 🚧👷‍♂️
+                            Word Count
                         </h1>
                     </DialogTitle>
                 </DialogHeader>
+                <WordCountContent />
             </DialogContent>
         </Dialog>
     );
