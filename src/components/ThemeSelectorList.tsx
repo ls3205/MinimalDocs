@@ -1,27 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-
-// import { Themes } from "@components/themes/themes";
+import React from "react";
 
 import { useTheme, useThemeRollback } from "@components/context/ThemeContext";
-import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Skeleton } from "./ui/Skeleton";
 
 export const ThemeSelectorList: React.FC = ({ ...props }) => {
-    const { theme, setTheme } = useTheme();
+    const { setTheme } = useTheme();
     const { themeRollback, setThemeRollback } = useThemeRollback();
-
-    const [Themes, SetThemes] = useState<object>({});
 
     const { isLoading, error, data } = useQuery({
         queryKey: ["Themes"],
         queryFn: async () => {
-            const { data } = await axios.get(
-                `${window.location.href}/api/themes`
-            );
+            const { data } = await axios.get("/api/themes");
             return data;
         },
     });
