@@ -13,13 +13,14 @@ import { useToast } from "./ui/use-toast";
 export const CopyTextButton: React.FC<ClientButtonType> = ({
     className,
     iconClass,
+    title,
     ...props
 }) => {
     const { toast } = useToast()
     return (
 
         <button
-            className={className}
+            className={cn(className, "flex flex-row")}
             onClick={() => {
                 try {
                     var copiedData = copyText();
@@ -49,6 +50,7 @@ export const CopyTextButton: React.FC<ClientButtonType> = ({
             }}
         >
             <Copy className={cn("w-full", iconClass)} />
+            {title && <p className="text-[20px]">{title}</p>}
         </button>
     );
 };
