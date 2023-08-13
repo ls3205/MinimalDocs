@@ -119,7 +119,7 @@ function CustomTextArea() {
 
     return (
         <div
-            className={`flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4/5 w-1/2 border-[0.25px] border-none rounded-md transition-all duration-300  sm:top-0 sm:left-0 sm:translate-x-0 sm:translate-y-0 sm:border-none sm:w-full sm:h-[92vh] sm:shadow-none sm:hover:shadow-none`}
+            className={`flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4/5 w-1/2 border-[0.25px] border-none rounded-md transition-all duration-300  sm:top-0 sm:left-0 sm:translate-x-0 sm:translate-y-0 sm:border-none sm:w-full sm:h-[92dvh] sm:shadow-none sm:hover:shadow-none`}
         >
             <ul className="flex flex-col w-full h-full">
                 <li>
