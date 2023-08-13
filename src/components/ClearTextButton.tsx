@@ -22,7 +22,7 @@ export const ClearTextButton: React.FC<ClientButtonType> = ({className, iconClas
 
     return (
         <button
-            className={cn(className, "flex flex-row")}
+            className={cn(className, title && 'flex flex-row')}
             onClick={() => {
                 clearText();
                 setSaved({state: "not saved"})

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     Dialog,
     DialogContent,
@@ -9,18 +9,12 @@ import {
     DialogTrigger,
 } from "./ui/Dialog";
 import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
+    DropdownMenu, DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
-    DropdownMenuTrigger,
+    DropdownMenuSeparator, DropdownMenuTrigger
 } from "./ui/DropdownMenu";
 import MobileSVG from "./MobileSVG";
-import { Info, Moon, Save, Settings } from "lucide-react";
+import { Info, Moon } from "lucide-react";
 import { ThemeSelectorList } from "./ThemeSelectorList";
 import { useSettings, useTheme } from "./context";
 import Link from "next/link";
@@ -33,19 +27,6 @@ type Checked = DropdownMenuCheckboxItemProps["checked"]
 const MobilePrimaryDropdown: React.FC<MobilePrimaryDropdownProps> = ({}) => {
     const { theme, setTheme } = useTheme();
     const { settings, setSettings } = useSettings();
-    const [autosave, setAutosave] = useState<Checked>(Boolean(settings))
-
-    useEffect(() => {
-        setSettings(String(autosave));
-    }, [autosave])
-
-    useEffect(() => {
-        if (settings === 'true') {
-            setAutosave(true)
-        } else {
-            setAutosave(false)
-        }
-    }, [settings])
 
     return (
         <Dialog>
@@ -71,23 +52,8 @@ const MobilePrimaryDropdown: React.FC<MobilePrimaryDropdownProps> = ({}) => {
                             </span>
                         </DropdownMenuItem>
                     </DialogTrigger>
-                    <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger className="focus:bg-highlight focus:text-text data-[state=open]:bg-highlight m-2 mt-2 mb-2 p-2">
-                            <Settings className="mr-2" />
-                            <span className="mr-1 text-[20px]">Settings</span>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent className="bg-menu text-text border-text">
-                            <DropdownMenuCheckboxItem
-                                className="focus:bg-highlight focus:text-text"
-                                checked={autosave}
-                                onCheckedChange={setAutosave}
-                            >
-                                <Save className="mr-2" />
-                                <span className="text-[20px]">Autosave</span>
-                            </DropdownMenuCheckboxItem>
-                        </DropdownMenuSubContent>
-                    </DropdownMenuSub>
+                    {/* <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" /> */}
+                    {/* <SettingsDropdownSub /> */}
                     <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
                     <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                         <Link

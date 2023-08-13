@@ -20,7 +20,7 @@ export const CopyTextButton: React.FC<ClientButtonType> = ({
     return (
 
         <button
-            className={cn(className, "flex flex-row")}
+            className={cn(className, title && 'flex flex-row')}
             onClick={() => {
                 try {
                     var copiedData = copyText();

@@ -20,9 +20,9 @@ function CustomTextArea() {
     const [wordCount, setWordCount] = useState<number>(0);
     // const [saved, setSaved] = useState<SavedState>({state: "saved"});
     const {saved, setSaved} = useSaved();
-    const {settings, setSettings} = useSettings();
-    var primaryTimer: ReturnType<typeof setTimeout>;
-    var secondaryTimer: ReturnType<typeof setTimeout>;
+    // const {settings, setSettings} = useSettings();
+    // var primaryTimer: ReturnType<typeof setTimeout>;
+    // var secondaryTimer: ReturnType<typeof setTimeout>;
 
     useEffect(() => {
         const textfield: HTMLTextAreaElement = document.getElementById(
@@ -52,33 +52,33 @@ function CustomTextArea() {
         const handler = () => {
             setSaved({state: 'not saved'})
             
-            if (window.localStorage.getItem('settings') === "true") {
-                if (secondaryTimer) {
-                    clearTimeout(secondaryTimer);
-                }
+            // if (window.localStorage.getItem('settings') === "true") {
+            //     if (secondaryTimer) {
+            //         clearTimeout(secondaryTimer);
+            //     }
 
-                secondaryTimer = setTimeout(() => {
-                    setSaved({state: 'saving'})
-                }, 1000)
+            //     secondaryTimer = setTimeout(() => {
+            //         setSaved({state: 'saving'})
+            //     }, 1000)
 
-                if (primaryTimer) {
-                    clearTimeout(primaryTimer);
-                }
+            //     if (primaryTimer) {
+            //         clearTimeout(primaryTimer);
+            //     }
             
-                primaryTimer = setTimeout(() => {
-                    handleTextTimeout();
-                }, 2000);
+            //     primaryTimer = setTimeout(() => {
+            //         handleTextTimeout();
+            //     }, 2000);
             
-                const handleTextTimeout = () => {
-                    setSaved({state: 'saved'})
-                    saveCacheData();
-                };
+            //     const handleTextTimeout = () => {
+            //         setSaved({state: 'saved'})
+            //         saveCacheData();
+            //     };
             
-                return () => {
-                    clearTimeout(primaryTimer);
-                    clearTimeout(secondaryTimer);
-                };
-            }
+            //     return () => {
+            //         clearTimeout(primaryTimer);
+            //         clearTimeout(secondaryTimer);
+            //     };
+            // }
         }
 
         const titlefield: HTMLTextAreaElement = document.getElementById('titlefield') as HTMLTextAreaElement;
@@ -119,13 +119,13 @@ function CustomTextArea() {
 
     return (
         <div
-            className={`flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4/5 w-1/2 border-[0.25px] border-none rounded-md transition-all duration-300  sm:top-0 sm:left-0 sm:translate-x-0 sm:translate-y-0 sm:border-none sm:w-full sm:h-[92vh] sm:shadow-none sm:hover:shadow-none`}
+            className={`flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4/5 w-1/2 border-[0.25px] border-none rounded-md transition-all duration-300  sm:top-0 sm:left-0 sm:translate-x-0 sm:translate-y-0 sm:border-none sm:w-full sm:h-[92dvh] sm:shadow-none sm:hover:shadow-none`}
         >
             <ul className="flex flex-col w-full h-full">
-                <li>
+                <li className="w-full h-[50px] mb-[1%]">
                     <textarea
                         className={[
-                            `relative transition-all duration-300 outline-none border-b-[2px]  w-[95%] h-[50px] top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-highlight placeholder-subtext selection:bg-highlight`,
+                            `relative transition-all duration-300 outline-none border-b-[2px]  w-[95%] h-full top-[2.5%] left-[2.5%] align-middle text-[30px] resize-none bg-bg text-text caret-highlight placeholder-subtext selection:bg-highlight`,
                             saved.state === 'saved' && 'border-subtext',
                             saved.state === 'saving' && 'border-highlight',
                             saved.state === 'not saved' && 'border-red-600'
@@ -137,7 +137,7 @@ function CustomTextArea() {
                 <li className="w-full h-full">
                     <textarea
                         className={[
-                            `relative transition-all duration-300 border-b-[2px]  outline-none w-[95%] h-[99%] left-[2.5%] top-[1%] text-[20px] resize-none pr-2.5 bg-bg text-text caret-highlight placeholder-subtext sm:border-none selection:bg-highlight`,
+                            `relative transition-all duration-300 border-b-[2px] outline-none w-[95%] h-full left-[2.5%] text-[20px] resize-none pr-[2.5%] bg-bg text-text caret-highlight placeholder-subtext sm:border-none selection:bg-highlight`,
                             saved.state === 'saved' && 'border-subtext',
                             saved.state === 'saving' && 'border-highlight',
                             saved.state === 'not saved' && 'border-red-600'

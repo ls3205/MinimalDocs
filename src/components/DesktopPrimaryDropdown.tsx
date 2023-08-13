@@ -58,8 +58,8 @@ const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props
                             </span>
                         </DropdownMenuItem>
                     </DialogTrigger>
-                    <DropdownMenuSeparator className="dropdown-separator" />
-                    <SettingsDropdownSub />
+                    {/* <DropdownMenuSeparator className="dropdown-separator" /> */}
+                    {/* <SettingsDropdownSub /> */}
                     <DropdownMenuSeparator className="dropdown-separator" />
                     <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                         <Link className="flex flex-row align-middle w-full h-full" href="/about">

@@ -51,7 +51,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({ chi
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             <ThemeRollbackContext.Provider value={{ themeRollback, setThemeRollback }}>
-                <div className={`absolute top-0 left-0 w-screen h-screen ${theme ? `theme-${theme}` : 'theme-black'}`}>
+                <div className={`absolute top-0 left-0 w-[100dvw] min-h-[100svh] min-w-[300px] ${theme ? `theme-${theme}` : 'theme-black'}`}>
                     {children}
                 </div>
             </ThemeRollbackContext.Provider>
