@@ -17,7 +17,8 @@ import DesktopAccountDropdown from "@/components/DesktopAccountDropdown";
 
 export default function Home() {
     return (
-        <div className="app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300">
+        // <div className="app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300">
+        <>
             <DesktopPrimaryDropdown />
             <div className="absolute right-[25%] bottom-[92%]">
                 <WordCountPopup>
@@ -45,6 +46,7 @@ export default function Home() {
             </div>
 
             <Footer />
-        </div>
+        </>
+        // </div>
     );
 }

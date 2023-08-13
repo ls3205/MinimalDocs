@@ -3,7 +3,7 @@ import "material-icons/iconfont/material-icons.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "../themes/themes.css"
+import "../themes/themes.css";
 
 import Providers from "@/components/Providers";
 
@@ -23,11 +23,18 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
+                <link
+                    rel="icon"
+                    href="/icon?<generated>"
+                    type="image/png"
+                    sizes="32x32"
+                />
             </head>
             <body className={inter.className}>
                 <Providers>
-                    { children }
+                    <div className="app w-[100dvw] h-[100dvh] bg-bg text-text min-w-[300px] transition-all duration-300">
+                        {children}
+                    </div>
                 </Providers>
             </body>
         </html>
