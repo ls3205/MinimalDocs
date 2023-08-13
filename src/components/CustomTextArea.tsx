@@ -20,9 +20,9 @@ function CustomTextArea() {
     const [wordCount, setWordCount] = useState<number>(0);
     // const [saved, setSaved] = useState<SavedState>({state: "saved"});
     const {saved, setSaved} = useSaved();
-    const {settings, setSettings} = useSettings();
-    var primaryTimer: ReturnType<typeof setTimeout>;
-    var secondaryTimer: ReturnType<typeof setTimeout>;
+    // const {settings, setSettings} = useSettings();
+    // var primaryTimer: ReturnType<typeof setTimeout>;
+    // var secondaryTimer: ReturnType<typeof setTimeout>;
 
     useEffect(() => {
         const textfield: HTMLTextAreaElement = document.getElementById(
@@ -52,33 +52,33 @@ function CustomTextArea() {
         const handler = () => {
             setSaved({state: 'not saved'})
             
-            if (window.localStorage.getItem('settings') === "true") {
-                if (secondaryTimer) {
-                    clearTimeout(secondaryTimer);
-                }
+            // if (window.localStorage.getItem('settings') === "true") {
+            //     if (secondaryTimer) {
+            //         clearTimeout(secondaryTimer);
+            //     }
 
-                secondaryTimer = setTimeout(() => {
-                    setSaved({state: 'saving'})
-                }, 1000)
+            //     secondaryTimer = setTimeout(() => {
+            //         setSaved({state: 'saving'})
+            //     }, 1000)
 
-                if (primaryTimer) {
-                    clearTimeout(primaryTimer);
-                }
+            //     if (primaryTimer) {
+            //         clearTimeout(primaryTimer);
+            //     }
             
-                primaryTimer = setTimeout(() => {
-                    handleTextTimeout();
-                }, 2000);
+            //     primaryTimer = setTimeout(() => {
+            //         handleTextTimeout();
+            //     }, 2000);
             
-                const handleTextTimeout = () => {
-                    setSaved({state: 'saved'})
-                    saveCacheData();
-                };
+            //     const handleTextTimeout = () => {
+            //         setSaved({state: 'saved'})
+            //         saveCacheData();
+            //     };
             
-                return () => {
-                    clearTimeout(primaryTimer);
-                    clearTimeout(secondaryTimer);
-                };
-            }
+            //     return () => {
+            //         clearTimeout(primaryTimer);
+            //         clearTimeout(secondaryTimer);
+            //     };
+            // }
         }
 
         const titlefield: HTMLTextAreaElement = document.getElementById('titlefield') as HTMLTextAreaElement;
