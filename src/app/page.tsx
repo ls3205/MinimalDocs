@@ -14,8 +14,12 @@ import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
 import WordCountPopup from "@/components/WordCountPopup";
 import Footer from "@/components/Footer";
 import DesktopAccountDropdown from "@/components/DesktopAccountDropdown";
+import { getAuthSession } from "@/lib/auth";
+import SaveAsNewDoc from "@/components/SaveAsNewDoc";
 
-export default function Home() {
+export default async function Home() {
+    const session = await getAuthSession()
+
     return (
         // <div className="app w-screen h-screen bg-bg text-text min-w-[300px] transition-all duration-300">
         <>
@@ -38,7 +42,9 @@ export default function Home() {
             <div className="absolute top-[92%] left-[25%]">
                 <FileUploadButton className="editor-button" />
                 <FileDownloadButton className="editor-button" />
-                <CacheTextButton className="editor-button" />
+                {
+                    session && <SaveAsNewDoc className="editor-button" />
+                }
             </div>
             <div className="absolute top-[92%] right-[25%]">
                 <CopyTextButton className="editor-button" />
