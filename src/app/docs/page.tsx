@@ -24,10 +24,10 @@ const page: React.FC<pageProps> = async ({}) => {
                     <HomeIcon className="h-full mx-2" />
                 </button>
             </Link>
-            <div className="absolute w-1/2 h-3/4 top-[12.5%] left-1/2 -translate-x-1/2 bg-menu border-text border-[1px] rounded-lg">
+            <DesktopAccountDropdown />
+            <div className="absolute w-1/2 h-3/4 top-[12.5%] left-1/2 -translate-x-1/2 bg-menu border-text border-[1px] rounded-lg sm:w-full sm:h-full sm:top-0">
                 <DocSelectionList />
             </div>
-            <DesktopAccountDropdown />
             <Footer />
         </>
     ) : (

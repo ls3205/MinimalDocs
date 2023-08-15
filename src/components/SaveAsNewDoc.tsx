@@ -73,7 +73,7 @@ const SaveAsNewDoc: React.FC<ClientButtonType> = ({
             });
         },
         onSuccess: (data) => {
-            router.push(`/edit/${data}`)
+            router.push(`/docs/edit/${data}`)
         }
     });
 
