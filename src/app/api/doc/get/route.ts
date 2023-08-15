@@ -14,7 +14,13 @@ export async function GET(req: NextRequest) {
         const id = new URL(req.url).searchParams.get("id")
 
         if (!id) {
-            return NextResponse.json('No Id', { status: 400 })
+            const docs = await db.doc.findMany({
+                where: {
+                    creatorId: session.user.id
+                }
+            })
+
+            return NextResponse.json(docs, { status: 200 })
         }
 
         const doc = await db.doc.findFirst({

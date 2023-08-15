@@ -11,10 +11,11 @@ import {
 } from "./ui/DropdownMenu";
 import { Avatar, AvatarFallback } from "./ui/Avatar";
 import Image from "next/image";
-import { LogOutIcon, UserIcon } from "lucide-react";
+import { LogOutIcon, ScrollText, UserIcon } from "lucide-react";
 import { useTheme } from "./context";
 import { signOut } from "next-auth/react";
 import Spinner from "./Spinner";
+import Link from "next/link";
 
 interface DropdownMenuAccountProps {
     user: Pick<User, "name" | "image" | "email">;
@@ -72,6 +73,13 @@ const MobileDropdownMenuAccount: React.FC<DropdownMenuAccountProps> = ({ user })
                         {user.email && <p className="">{user.email}</p>}
                     </div>
                 </div>
+                <DropdownMenuSeparator className="dropdown-separator" />
+                <Link href="/docs">
+                    <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
+                        <p className="text-sm mr-auto">Docs</p>
+                        <ScrollText />
+                    </DropdownMenuItem>
+                </Link>
                 <DropdownMenuSeparator className="dropdown-separator" />
                 <DropdownMenuItem
                     className="focus:bg-red-500 focus:text-white m-2 mt-2 mb-2 p-2"
