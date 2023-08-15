@@ -4,9 +4,10 @@ import React from "react";
 
 interface DocSelectionCardProps {
     doc: Doc;
+    key: string;
 }
 
-const DocSelectionCard: React.FC<DocSelectionCardProps> = ({ doc }) => {
+const DocSelectionCard: React.FC<DocSelectionCardProps> = ({ doc, key, ...props }) => {
     const fixDate = (date: string) => {
         date.replace(/[-]/g, '/')
         const newDate = new Date(Date.parse(date))
@@ -14,7 +15,7 @@ const DocSelectionCard: React.FC<DocSelectionCardProps> = ({ doc }) => {
     }
 
     return (
-        <li className="relative left-[2.5%] w-[95%] h-fit m-4 ms-0 rounded-lg border-subtext bg-bg border-[1px]">
+        <li key={key} className="relative left-[2.5%] w-[95%] h-fit m-4 ms-0 rounded-lg border-subtext bg-bg border-[1px]">
             <Link
                 href={`/edit/${doc.id}`}
                 className="w-full h-full flex flex-row"

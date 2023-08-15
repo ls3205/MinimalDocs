@@ -5,12 +5,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import DocSelectionCard from "./DocSelectionCard";
+import { Skeleton } from "./ui/Skeleton";
+import DocSelectionLoadingSkeleton from "./DocSelectionLoadingSkeleton";
 
 interface DocSelectionListProps {
     // session: Session;
 }
 
-const DocSelectionList: React.FC<DocSelectionListProps> = ({ }) => {
+const DocSelectionList: React.FC<DocSelectionListProps> = ({}) => {
     const { data, isLoading, error } = useQuery({
         queryKey: ["GetDocs"],
         queryFn: async () => {
@@ -20,7 +22,16 @@ const DocSelectionList: React.FC<DocSelectionListProps> = ({ }) => {
     });
 
     if (isLoading) {
-        return <div>it do be loading</div>;
+        return (
+            <ul className="w-full h-full overflow-hidden">
+                <DocSelectionLoadingSkeleton />
+                <DocSelectionLoadingSkeleton />
+                <DocSelectionLoadingSkeleton />
+                <DocSelectionLoadingSkeleton />
+                <DocSelectionLoadingSkeleton />
+                <DocSelectionLoadingSkeleton />
+            </ul>
+        );
     }
 
     if (error) {
@@ -28,12 +39,10 @@ const DocSelectionList: React.FC<DocSelectionListProps> = ({ }) => {
     }
 
     return (
-        <ul className="w-full h-full">
-            {
-                data?.map((doc) => {
-                    return <DocSelectionCard doc={doc} />
-                })
-            }
+        <ul className="w-full h-full overflow-y-scroll">
+            {data?.map((doc) => {
+                return <DocSelectionCard key={doc.id} doc={doc} />;
+            })}
         </ul>
     );
 };
