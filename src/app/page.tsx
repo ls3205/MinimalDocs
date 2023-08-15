@@ -7,7 +7,6 @@ import {
     FileDownloadButton,
     FileUploadButton,
     CopyTextButton,
-    CacheTextButton,
 } from "@minimaldocs/ui";
 
 import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
