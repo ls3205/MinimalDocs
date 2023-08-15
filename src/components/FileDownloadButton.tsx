@@ -8,6 +8,7 @@ import { ClientButtonType } from "@minimaldocs/types";
 
 import { cn } from "@minimaldocs/lib";
 import { useToast } from "./ui/use-toast";
+import { DownloadIcon } from "lucide-react";
 
 export const FileDownloadButton: React.FC<ClientButtonType> = ({
     className,
@@ -48,10 +49,7 @@ export const FileDownloadButton: React.FC<ClientButtonType> = ({
                 )
             }}
         >
-            <span className={cn("material-icons-outlined", iconClass)}>
-                {" "}
-                file_download{" "}
-            </span>
+            <DownloadIcon className={cn('w-full', iconClass)} />
             {title && <span className="text-[20px]">{title}</span>}
         </button>
     );
