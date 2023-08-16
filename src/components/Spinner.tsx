@@ -5,11 +5,12 @@ import { cn } from "@/lib/utils";
 interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
     width: string
     height: string
+    className?: string
 }
 
-const Spinner: React.FC<SpinnerProps> = ({width, height, ...props}) => {
+const Spinner: React.FC<SpinnerProps> = ({width, height, className, ...props}) => {
     return (
-        <div className={cn("grid justify-center items-center", width, height)}>
+        <div className={cn("grid justify-center items-center", width, height, className)}>
             <div className="w-6 h-6 border-[2px] border-[#f3f3f3] border-t-gray-900 rounded-full animate-[spinner_1.5s_linear_infinite]"></div>
         </div>
     );
