@@ -11,10 +11,11 @@ import {
 } from "./ui/DropdownMenu";
 import { Avatar, AvatarFallback } from "./ui/Avatar";
 import Image from "next/image";
-import { LogOutIcon, UserIcon } from "lucide-react";
+import { LogOutIcon, Plus, ScrollText, UserIcon, X } from "lucide-react";
 import { useTheme } from "./context";
 import { signOut } from "next-auth/react";
 import Spinner from "./Spinner";
+import Link from "next/link";
 
 interface DropdownMenuAccountProps {
     user: Pick<User, "name" | "image" | "email">;
@@ -22,7 +23,7 @@ interface DropdownMenuAccountProps {
 
 const DropdownMenuAccount: React.FC<DropdownMenuAccountProps> = ({ user }) => {
     const { theme } = useTheme();
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     return (
         <DropdownMenu>
@@ -73,20 +74,41 @@ const DropdownMenuAccount: React.FC<DropdownMenuAccountProps> = ({ user }) => {
                     </div>
                 </div>
                 <DropdownMenuSeparator className="dropdown-separator" />
+                <Link href='/docs/create'>
+                    <DropdownMenuItem className="focus:bg-green-500 focus:text-white m-2 mt-2 mb-2 p-2 cursor-pointer">
+                        <p className="text-sm mr-auto">Create New Doc</p>
+                        <Plus />
+                    </DropdownMenuItem>
+                </Link>
+                <Link href="/docs">
+                    <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2 cursor-pointer" onSelect={(e) => e.preventDefault()}>
+                        <p className="text-sm mr-auto">Open/Manage Docs</p>
+                        <ScrollText />
+                    </DropdownMenuItem>
+                </Link>
+                <Link href="/">
+                    <DropdownMenuItem className="focus:bg-red-500 focus:text-white m-2 mt-2 mb-2 p-2 cursor-pointer" onSelect={(e) => e.preventDefault()}>
+                        <p className="text-sm mr-auto">Close Doc</p>
+                        <X />
+                    </DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator className="dropdown-separator" />
                 <DropdownMenuItem
-                    className="focus:bg-red-500 focus:text-white m-2 mt-2 mb-2 p-2"
+                    className="focus:bg-red-500 focus:text-white m-2 mt-2 mb-2 p-2 cursor-pointer"
                     onSelect={(e) => {
                         e.preventDefault();
-                        setIsLoading(true)
+                        setIsLoading(true);
                         signOut({
                             callbackUrl: window.location.origin,
                         });
                     }}
                 >
                     <p className="text-[20px] mr-auto">Sign Out</p>
-                    {
-                        isLoading ? <Spinner width="w-6" height="w-6" /> : <LogOutIcon />
-                    }
+                    {isLoading ? (
+                        <Spinner width="w-6" height="w-6" />
+                    ) : (
+                        <LogOutIcon />
+                    )}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

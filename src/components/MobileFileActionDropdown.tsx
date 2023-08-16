@@ -11,7 +11,7 @@ import {
 import { Save } from "lucide-react";
 import { FileUploadButton } from "./FileUploadButton";
 import { FileDownloadButton } from "./FileDownloadButton";
-import { CacheTextButton } from "./CacheTextButton";
+// import { CacheTextButton } from "./UpdateDocButton";
 import { useTheme } from "./context";
 
 interface MobileFileActionDropdownProps {}
@@ -44,11 +44,11 @@ const MobileFileActionDropdown: React.FC<
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="relative fill-text w-[90%] left-[5%]" />
                 <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
-                    <CacheTextButton
+                    {/* <CacheTextButton
                         className="w-full h-full"
                         iconClass="mr-1 text-[20px] top-[5px] relative"
                         title="Save"
-                    />
+                    /> */}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

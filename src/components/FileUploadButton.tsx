@@ -8,6 +8,7 @@ import { ClientButtonType } from "@minimaldocs/types";
 
 import { cn } from "@minimaldocs/lib";
 import { useSaved } from "./context";
+import { UploadIcon } from "lucide-react";
 
 export const FileUploadButton: React.FC<ClientButtonType> = ({
     className,
@@ -20,10 +21,7 @@ export const FileUploadButton: React.FC<ClientButtonType> = ({
     return (
         <button className={className}>
             <label className="inline-block w-full h-full">
-                <span className={cn("material-icons-outlined", iconClass)}>
-                    {" "}
-                    file_upload{" "}
-                </span>
+                <UploadIcon className={cn('w-full', iconClass)} />
                 {title && <span className="text-[20px]">{title}</span>}
                 <input
                     type="file"
