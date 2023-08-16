@@ -1,7 +1,7 @@
 import DesktopAccountDropdown from "@/components/DesktopAccountDropdown";
 import DesktopPrimaryDropdown from "@/components/DesktopPrimaryDropdown";
 import DocSelectionList from "@/components/DocSelectionList";
-import Footer from "@/components/Footer";
+import Footer from "./Footer";
 import { getAuthSession } from "@/lib/auth";
 import { ChevronLeft, HomeIcon } from "lucide-react";
 import Link from "next/link";

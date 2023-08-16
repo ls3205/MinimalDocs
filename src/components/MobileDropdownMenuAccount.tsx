@@ -11,7 +11,7 @@ import {
 } from "./ui/DropdownMenu";
 import { Avatar, AvatarFallback } from "./ui/Avatar";
 import Image from "next/image";
-import { LogOutIcon, ScrollText, UserIcon } from "lucide-react";
+import { LogOutIcon, Plus, ScrollText, UserIcon, X } from "lucide-react";
 import { useTheme } from "./context";
 import { signOut } from "next-auth/react";
 import Spinner from "./Spinner";
@@ -74,10 +74,22 @@ const MobileDropdownMenuAccount: React.FC<DropdownMenuAccountProps> = ({ user })
                     </div>
                 </div>
                 <DropdownMenuSeparator className="dropdown-separator" />
+                <Link href='/docs/create'>
+                    <DropdownMenuItem className="focus:bg-green-500 focus:text-white m-2 mt-2 mb-2 p-2 cursor-pointer">
+                        <p className="text-sm mr-auto">Create New Doc</p>
+                        <Plus />
+                    </DropdownMenuItem>
+                </Link>
                 <Link href="/docs">
                     <DropdownMenuItem className="focus:bg-highlight focus:text-text m-2 mt-2 mb-2 p-2">
                         <p className="text-sm mr-auto">Docs</p>
                         <ScrollText />
+                    </DropdownMenuItem>
+                </Link>
+                <Link href="/">
+                    <DropdownMenuItem className="focus:bg-red-500 focus:text-white m-2 mt-2 mb-2 p-2 cursor-pointer" onSelect={(e) => e.preventDefault()}>
+                        <p className="text-sm mr-auto">Close Doc</p>
+                        <X />
                     </DropdownMenuItem>
                 </Link>
                 <DropdownMenuSeparator className="dropdown-separator" />
