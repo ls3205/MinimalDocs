@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import Footer from "../Footer";
 import CreateDocForm from "@/components/CreateDocForm";
+import { redirect } from "next/navigation";
 
 interface pageProps {}
 
@@ -31,7 +32,7 @@ const page: React.FC<pageProps> = async ({}) => {
             <Footer />
         </>
     ) : (
-        <div>sign in bro</div>
+        redirect('/sign-in')
     );
 };
 
