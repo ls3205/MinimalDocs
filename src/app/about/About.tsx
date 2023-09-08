@@ -21,7 +21,7 @@ const About: React.FC<AboutProps> = ({}) => {
                     Why MinimalDocs?
                 </AccordionTrigger>
                 <AccordionContent className="text-text">
-                    MinimalDocs was built out of a need for something like Blankslate.io, a lightweight, online place where I could store small notes for myself. I didn't like the bright theme of blankslate and was looking for something with a darker theme when I decided just to make it myself.
+                    MinimalDocs was built out of a need for something like Blankslate.io, a lightweight, online place where I could store small notes for myself. I wanted a darker theme of blankslate and was looking for something with a darker theme when I decided just to make it myself.
                 </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
