@@ -27,7 +27,7 @@ const DropdownMenuAccount: React.FC<DropdownMenuAccountProps> = ({ user }) => {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="absolute left-[8%] bottom-[7.5%] border-subtext border-[2px] rounded-full p-[1px] hover:border-text active:border-highlight transition-all duration-300 active:transition-none">
+            <DropdownMenuTrigger className="absolute left-[8%] bottom-[7.5%] border-subtext border-[2px] rounded-full p-[1px] hover:border-text active:border-highlight transition-all duration-300 active:transition-none sm:invisible">
                 <Avatar className="w-14 h-14">
                     {user.image ? (
                         <div className="relative aspect-square h-full w-full">
