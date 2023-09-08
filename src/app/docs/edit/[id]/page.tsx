@@ -15,6 +15,7 @@ import WordCountPopup from "@/components/WordCountPopup";
 import Footer from "@/components/Footer";
 import DesktopAccountDropdown from "@/components/DesktopAccountDropdown";
 import EditorTextArea from "@/components/EditorTextArea";
+import { redirect } from "next/navigation";
 
 interface pageProps {
     params: {
@@ -61,8 +62,7 @@ const page: React.FC<pageProps> = async ({ params }) => {
                 <Footer />
             </>
         ) : (
-            // </div>
-            <div>sign in bro</div>
+            redirect('/sign-in')
         )
     );
 };
