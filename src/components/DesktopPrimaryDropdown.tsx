@@ -28,16 +28,19 @@ import Link from "next/link";
 import { useTheme } from "./context";
 
 import SettingsDropdownSub from "./SettingsDropdownSub";
+import { cn } from "@/lib/utils";
 
-interface DesktopPrimaryDropdownProps {}
+interface DesktopPrimaryDropdownProps {
+    className?: string
+}
 
-const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({...props}) => {
+const DesktopPrimaryDropdown: React.FC<DesktopPrimaryDropdownProps> = ({className, ...props}) => {
     const {theme, setTheme} = useTheme()
 
     return (
         <Dialog>
             <DropdownMenu>
-                <DropdownMenuTrigger className="absolute left-[7.5%] top-[7.5%] sm:hidden">
+                <DropdownMenuTrigger className={cn("absolute left-[7.5%] top-[7.5%] sm:hidden", className)}>
                     <DesktopSVG />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className={`theme-${theme} bg-menu text-text border-text sm:hidden`}>

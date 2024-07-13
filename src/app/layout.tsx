@@ -32,7 +32,7 @@ export default function RootLayout({
             </head>
             <body className={inter.className}>
                 <Providers>
-                    <div className="app w-[100dvw] min-h-[100svh] bg-bg text-text min-w-[300px] transition-all duration-300">
+                    <div className="app min-h-[100svh] w-full min-w-[300px] overflow-x-hidden bg-bg text-text transition-all duration-300">
                         {children}
                     </div>
                 </Providers>
